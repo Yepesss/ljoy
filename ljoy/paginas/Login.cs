@@ -13,6 +13,8 @@ namespace ljoy.paginas
 
         public Login()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
+
             gebruikersnaam = new Entry();
             gebruikersnaam.HorizontalTextAlignment = TextAlignment.Center;
             gebruikersnaam.Placeholder = "Gebruikersnaam";
@@ -40,6 +42,7 @@ namespace ljoy.paginas
         public void _Login()
         {
             DisplayAlert("Log in", gebruikersnaam.Text + " " + wachtwoord.Text, "Ok");
+            Navigation.PushAsync(new applicatie.ApplicatieStarter());
         }
     }
 }
