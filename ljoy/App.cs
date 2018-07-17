@@ -9,7 +9,7 @@ namespace ljoy
     {
         public App()
         {
-            MainPage = new MainPage();
+            MainPage = new paginas.Login();
         }
 
         protected override void OnStart()
