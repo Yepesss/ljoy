@@ -9,7 +9,7 @@ namespace ljoy
     {
         public App()
         {
-            MainPage = new MainPage();
+            MainPage = new applicatie.ApplicatieStarter();
         }
 
         protected override void OnStart()

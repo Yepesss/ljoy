@@ -94,6 +94,17 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\drawable\bel.png" />
+    <AndroidResource Include="Resources\drawable\contact.png" />
+    <AndroidResource Include="Resources\drawable\fb.png" />
+    <AndroidResource Include="Resources\drawable\inschrijven.png" />
+    <AndroidResource Include="Resources\drawable\instagram.png" />
+    <AndroidResource Include="Resources\drawable\logo.png" />
+    <AndroidResource Include="Resources\drawable\mail.png" />
+    <AndroidResource Include="Resources\drawable\nieuws.png" />
+    <AndroidResource Include="Resources\drawable\route.png" />
+    <AndroidResource Include="Resources\drawable\website.png" />
+    <AndroidResource Include="Resources\drawable\youtube.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

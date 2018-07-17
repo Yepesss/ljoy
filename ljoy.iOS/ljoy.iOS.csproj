@@ -158,4 +158,17 @@
       <Name>ljoy</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bel.png" />
+    <BundleResource Include="Resources\contact.png" />
+    <BundleResource Include="Resources\fb.png" />
+    <BundleResource Include="Resources\inschrijven.png" />
+    <BundleResource Include="Resources\instagram.png" />
+    <BundleResource Include="Resources\logo.png" />
+    <BundleResource Include="Resources\mail.png" />
+    <BundleResource Include="Resources\nieuws.png" />
+    <BundleResource Include="Resources\route.png" />
+    <BundleResource Include="Resources\website.png" />
+    <BundleResource Include="Resources\youtube.png" />
+  </ItemGroup>
 </Project>
