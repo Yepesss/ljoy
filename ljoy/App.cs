@@ -10,9 +10,12 @@ namespace ljoy
         public App()
         {
             MainPage = new MainPage();
+<<<<<<< HEAD
 
             //comment b
 
+=======
+>>>>>>> jimmy
         }
 
         protected override void OnStart()
