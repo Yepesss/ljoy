@@ -12,6 +12,7 @@ namespace ljoy
             MainPage = new MainPage();
 
             //comment b
+
         }
 
         protected override void OnStart()
