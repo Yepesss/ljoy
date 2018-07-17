@@ -8,6 +8,9 @@ namespace ljoy.applicatie
 
         public ApplicatieStarter()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
+
+
             //Geeft de tabbar een kleur en de tekst en plaatjes erin
             BarBackgroundColor = Color.LightPink;
             BarTextColor = Color.Black;
