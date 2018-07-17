@@ -9,12 +9,16 @@ namespace ljoy
     {
         public App()
         {
+<<<<<<< HEAD
             MainPage = new MainPage();
 <<<<<<< HEAD
 
             //comment b
 
 =======
+>>>>>>> jimmy
+=======
+            MainPage = new paginas.Login();
 >>>>>>> jimmy
         }
 
