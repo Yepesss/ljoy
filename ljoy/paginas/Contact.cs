@@ -103,24 +103,24 @@ namespace ljoy.paginas
             info.FontSize = 24;
             info.Margin = 20;
 
-            //var map = new Map(MapSpan.FromCenterAndRadius(new Position(51.643069, 4.931379), Distance.FromMiles(2)))
-            //{
-            //    IsShowingUser = true,
-            //    HeightRequest = 250,
-            //    WidthRequest = 960,
-            //    VerticalOptions = LayoutOptions.FillAndExpand
+            var map = new Map(MapSpan.FromCenterAndRadius(new Position(51.643069, 4.931379), Distance.FromMiles(2)))
+            {
+                IsShowingUser = true,
+                HeightRequest = 250,
+                WidthRequest = 960,
+                VerticalOptions = LayoutOptions.FillAndExpand
                                                
-            //};
+            };
 
-            //var pin = new Pin
-            //{
-            //    Type = PinType.Place,
-            //    Position = new Position(51.643069, 4.931379),
-            //    Label = "L-Joy Dancefactory",
-            //    Address = "Lage Ham 184"
-            //};
+            var pin = new Pin
+            {
+                Type = PinType.Place,
+                Position = new Position(51.643069, 4.931379),
+                Label = "L-Joy Dancefactory",
+                Address = "Lage Ham 184"
+            };
 
-            //map.Pins.Add(pin);
+            map.Pins.Add(pin);
 
             var grid = new Grid();
 
@@ -166,7 +166,7 @@ namespace ljoy.paginas
             Content = new StackLayout
             {
                 Children = {
-                    //map,
+                    map,
                     routeButton,
                     info,
                     grid

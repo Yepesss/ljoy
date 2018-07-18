@@ -18,8 +18,16 @@ namespace ljoy.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+            if(CheckSelfPermission("android.permission.ACCESS_FINE_LOCATION") == Permission.Granted)
+            {
 
+            }
+            else
+            {
+                RequestPermissions(new String[] { "android.permission.ACCESS_FINE_LOCATION" }, 0);
+            }
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
             LoadApplication(new App());
         }
     }

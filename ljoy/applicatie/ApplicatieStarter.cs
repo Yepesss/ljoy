@@ -21,6 +21,7 @@ namespace ljoy.applicatie
 
         private void maakPaginas()
         {
+
             //Maak de nieuwspagina aan
             var nieuwsPagina = new paginas.Nieuws();
             nieuwsPagina.Title = "Nieuws";
