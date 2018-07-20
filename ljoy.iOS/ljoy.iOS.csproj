@@ -174,4 +174,16 @@
     <BundleResource Include="Resources\website.png" />
     <BundleResource Include="Resources\youtube.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\box1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\loginbackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\password_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\account_icon.png" />
+  </ItemGroup>
 </Project>

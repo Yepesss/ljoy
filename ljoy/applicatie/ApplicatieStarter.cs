@@ -12,8 +12,8 @@ namespace ljoy.applicatie
 
 
             //Geeft de tabbar een kleur en de tekst en plaatjes erin
-            BarBackgroundColor = Color.LightPink;
-            BarTextColor = Color.Black;
+            BarBackgroundColor = Color.FromHex("#FF4081");
+            BarTextColor = Color.White;
 
             //Maak de pagina's aan
             maakPaginas();
