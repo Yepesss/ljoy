@@ -14,6 +14,13 @@ namespace ljoy.paginas
         Image youtubeImage;
         Image instagramImage;
         Image belImage;
+        Image routeImage;
+        Button facebookButton;
+        Button websiteButton;
+        Button mailButton;
+        Button youtubeButton;
+        Button instagramButton;
+        Button belButton;
 
         Button routeButton;
 
@@ -26,7 +33,6 @@ namespace ljoy.paginas
 
         private void createButtons()
         {
-
             var facebookTapGesture = new TapGestureRecognizer();
             var mailTapGesture = new TapGestureRecognizer();
             var websiteTapGesture = new TapGestureRecognizer();
@@ -34,74 +40,110 @@ namespace ljoy.paginas
             var instagramTapGesture = new TapGestureRecognizer();
             var belTapGesture = new TapGestureRecognizer();
 
+            facebookButton = new Button();
+            facebookButton.BackgroundColor = Color.FromHex("#FF4081");
+            facebookButton.Text = "Facebook";
+            facebookButton.TextColor = Color.White;
+            facebookButton.Command = new Command(openFacebook);
+
+
+            websiteButton = new Button();
+            websiteButton.BackgroundColor = Color.FromHex("#FF4081");
+            websiteButton.Text = "Website";
+            websiteButton.TextColor = Color.White;
+            websiteButton.Command = new Command(openWebsite);
+
+
+
+
+            mailButton = new Button();
+            mailButton.BackgroundColor = Color.FromHex("#FF4081");
+            mailButton.Text = "E-mail";
+            mailButton.TextColor = Color.White;
+            mailButton.Command = new Command(openEmail);
+
+
+
+
+            youtubeButton = new Button();
+            youtubeButton.BackgroundColor = Color.FromHex("#FF4081");
+            youtubeButton.Text = "Youtube";
+            youtubeButton.TextColor = Color.White;
+            youtubeButton.Command = new Command(openYoutube);
+
+
+
+
+            instagramButton = new Button();
+            instagramButton.BackgroundColor = Color.FromHex("#FF4081");
+            instagramButton.Text = "Instagram";
+            instagramButton.TextColor = Color.White;
+            instagramButton.Command = new Command(openInstagram);
+
+
+
+
+            belButton = new Button();
+            belButton.BackgroundColor = Color.FromHex("#FF4081");
+            belButton.Text = "Telefoon";
+            belButton.TextColor = Color.White;
+            belButton.Command = new Command(openTelefoon);
+
+
+
+            routeButton = new Button();
+            routeButton.BackgroundColor = Color.FromHex("#FF4081");
+            routeButton.Text = "Routebeschrijving";
+            routeButton.Command = new Command(routebeschrijving);
+            routeButton.TextColor = Color.White;
+
+
+
+
+
             facebookImage = new Image();
             facebookImage.Source = "fb.png";
-            facebookImage.WidthRequest = 36;
-            facebookImage.HeightRequest = 36;
             facebookImage.HorizontalOptions = LayoutOptions.Center;
             facebookImage.Aspect = Aspect.AspectFit; 
-            facebookImage.GestureRecognizers.Add(facebookTapGesture);
 
             websiteImage = new Image();
             websiteImage.Source = "website.png";
-            websiteImage.WidthRequest = 36;
-            websiteImage.HeightRequest = 36;
             websiteImage.HorizontalOptions = LayoutOptions.Center;
             websiteImage.Aspect = Aspect.AspectFit;
-            websiteImage.GestureRecognizers.Add(websiteTapGesture);
 
             mailImage = new Image();
             mailImage.Source = "mail.png";
-            mailImage.WidthRequest = 36;
-            mailImage.HeightRequest = 36;
             mailImage.HorizontalOptions = LayoutOptions.Center;
             mailImage.Aspect = Aspect.AspectFit;
-            mailImage.GestureRecognizers.Add(mailTapGesture);
 
             youtubeImage = new Image();
             youtubeImage.Source = "youtube.png";
-            youtubeImage.WidthRequest = 36;
-            youtubeImage.HeightRequest = 36;
+
             youtubeImage.HorizontalOptions = LayoutOptions.Center;
             youtubeImage.Aspect = Aspect.AspectFit;
-            youtubeImage.GestureRecognizers.Add(youtubeTapGesture);
 
             instagramImage = new Image();
             instagramImage.Source = "instagram.png";
-            instagramImage.WidthRequest = 36;
-            instagramImage.HeightRequest = 36;
             instagramImage.HorizontalOptions = LayoutOptions.Center;
             instagramImage.Aspect = Aspect.AspectFit;
-            instagramImage.GestureRecognizers.Add(instagramTapGesture);
 
             belImage = new Image();
-            belImage.Source = "bel.png";
-            belImage.WidthRequest = 36;
-            belImage.HeightRequest = 36;
+            belImage.Source = "telefoon.png";
             belImage.HorizontalOptions = LayoutOptions.Center;
             belImage.Aspect = Aspect.AspectFit;
-            belImage.GestureRecognizers.Add(belTapGesture);
 
-            routeButton = new Button();
-            routeButton.Image = "route.png";
-            routeButton.Text = "Routebeschrijving";
-            routeButton.TextColor = Color.Black;
-            routeButton.Margin = 10;
-            routeButton.BorderColor = Color.Black;
-            routeButton.BorderWidth = 1;
-            routeButton.BackgroundColor = Color.LightGray;
-            routeButton.FontSize = 20;
-            routeButton.Command = new Command(routebeschrijving);
+            routeImage = new Image();
+            routeImage.Source = "route.png";
+            routeImage.HorizontalOptions = LayoutOptions.Center;
+            routeImage.Aspect = Aspect.AspectFit;
 
             info = new Label();
-            info.Text = "L-Joy Dancefactory" 
-                + "\r\n" 
-                + "Lage Ham 184" 
+            info.Text = "L-Joy Dancefactory, Lage Ham 184" 
                 + "\r\n" 
                 + "5102 AE Dongen";
-            info.HorizontalTextAlignment = TextAlignment.Start;
-            info.FontSize = 24;
-            info.Margin = 20;
+            info.HorizontalTextAlignment = TextAlignment.Center;
+            info.FontSize = 16;
+            info.TextColor = Color.Gray;
 
             var map = new Map(MapSpan.FromCenterAndRadius(new Position(51.643069, 4.931379), Distance.FromMiles(2)))
             {
@@ -117,59 +159,77 @@ namespace ljoy.paginas
                 Type = PinType.Place,
                 Position = new Position(51.643069, 4.931379),
                 Label = "L-Joy Dancefactory",
-                Address = "Lage Ham 184"
+                Address = "Lage Ham 184, 5102 AE Dongen"
+
             };
 
             map.Pins.Add(pin);
 
             var grid = new Grid();
 
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(200) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
+
+
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(30) });
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
 
-            grid.Children.Add(facebookImage, 0, 0);
-            grid.Children.Add(mailImage, 1, 0);
-            grid.Children.Add(websiteImage, 2, 0);
-            grid.Children.Add(youtubeImage, 3, 0);
-            grid.Children.Add(instagramImage, 4, 0);
-            grid.Children.Add(belImage, 5, 0);
+            grid.Children.Add(info, 1, 0);
 
-            facebookTapGesture.Tapped += (s, e) => {
-                Device.OpenUri(new Uri("fb://page/159903424152451"));
-            };
+            grid.Children.Add(facebookButton, 1, 1);
+            grid.Children.Add(facebookImage, 2, 1);
 
-            mailTapGesture.Tapped += (s, e) => {
-                Device.OpenUri(new Uri("mailto:info@l-joy.nl"));
-            };
+            grid.Children.Add(mailButton, 1, 2);
+            grid.Children.Add(mailImage, 2, 2);
 
-            websiteTapGesture.Tapped += (s, e) => {
-                Device.OpenUri(new Uri("http://www.l-joy.nl"));
-            };
 
-            youtubeTapGesture.Tapped += (s, e) => {
-                Device.OpenUri(new Uri("https://www.youtube.com/channel/UCDU4dy3AkU0X4028pyvuqIg"));
-            };
+            grid.Children.Add(websiteButton, 1, 3);
+            grid.Children.Add(websiteImage, 2, 3);
 
-            instagramTapGesture.Tapped += (s, e) => {
-                Device.OpenUri(new Uri("instagram://user?username=ljoydancefactory"));
-            };
 
-            belTapGesture.Tapped += (s, e) => {
-                Device.OpenUri(new Uri("tel:0653109856"));
-            };
+            grid.Children.Add(youtubeButton, 1, 4);
+            grid.Children.Add(youtubeImage, 2, 4);
 
-            Content = new StackLayout
+
+            grid.Children.Add(instagramButton, 1, 5);
+            grid.Children.Add(instagramImage, 2, 5);
+
+            grid.Children.Add(belButton, 1, 6);
+            grid.Children.Add(belImage, 2, 6);
+
+            grid.Children.Add(routeButton, 1, 7);
+            grid.Children.Add(routeImage, 2, 7);
+
+
+            Grid.SetColumnSpan(facebookButton, 3);
+            Grid.SetColumnSpan(mailButton, 3);
+            Grid.SetColumnSpan(websiteButton, 3);
+            Grid.SetColumnSpan(youtubeButton, 3);
+            Grid.SetColumnSpan(instagramButton, 3);
+            Grid.SetColumnSpan(belButton, 3);
+            Grid.SetColumnSpan(routeButton, 3);
+            Grid.SetColumnSpan(info, 3);
+
+
+            Content = new ScrollView
             {
-                Children = {
-                    map,
-                    routeButton,
-                    info,
-                    grid
+                Content = new StackLayout
+                {
+                    Children = {
+                        map,
+                        //routeButton,
+                        grid
+                    }
                 }
             };
         }
@@ -185,6 +245,42 @@ namespace ljoy.paginas
             {
                 Device.OpenUri(new Uri("http://maps.google.com/?daddr=51.643069,4.931379"));
             }
+        }
+
+        private void openFacebook()
+        {
+            Device.OpenUri(new Uri("fb://page/159903424152451"));
+
+        }
+
+        private void openEmail()
+        {
+            Device.OpenUri(new Uri("mailto:info@l-joy.nl"));
+
+        }
+
+        private void openWebsite()
+        {
+            Device.OpenUri(new Uri("http://www.l-joy.nl"));
+
+        }
+
+        private void openYoutube()
+        {
+            Device.OpenUri(new Uri("https://www.youtube.com/channel/UCDU4dy3AkU0X4028pyvuqIg"));
+
+        }
+
+        private void openInstagram()
+        {
+            Device.OpenUri(new Uri("instagram://user?username=ljoydancefactory"));
+
+        }
+
+        private void openTelefoon()
+        {
+            Device.OpenUri(new Uri("tel:0653109856"));
+
         }
     }
 }

@@ -27,8 +27,8 @@ namespace ljoy.applicatie
             nieuwsPagina.Title = "Nieuws";
 
             //Maak de inschrijfpagina aan
-            var inschrijfPagina = new paginas.Inschrijf();
-            inschrijfPagina.Title = "Inschrijven";
+            var lesPagina = new paginas.Lessen();
+            lesPagina.Title = "Mijn lessen";
 
             //Maak de contactpagina aan
             var contactPagina = new paginas.Contact();
@@ -37,12 +37,12 @@ namespace ljoy.applicatie
             if (Device.RuntimePlatform == Device.iOS)
             {
                 nieuwsPagina.Icon = "nieuws.png";
-                inschrijfPagina.Icon = "inschrijven.png";
+                lesPagina.Icon = "inschrijven.png";
                 contactPagina.Icon = "contact.png";
             }
 
             this.Children.Add(nieuwsPagina);
-            this.Children.Add(inschrijfPagina);
+            this.Children.Add(lesPagina);
             this.Children.Add(contactPagina);
         }
     }

@@ -186,4 +186,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\account_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\telefoon.png" />
+  </ItemGroup>
 </Project>
