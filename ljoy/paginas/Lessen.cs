@@ -14,91 +14,127 @@ namespace ljoy.paginas
         Button proefles;
 
 
-        class Person
+        public class Les
         {
-            public Person(string name, DateTime birthday, Color favoriteColor)
+            public Les(ImageSource afbeelding, string naam, string tijd, string omschrijving, string docent)
             {
-                this.Name = name;
-                this.Birthday = birthday;
-                this.FavoriteColor = favoriteColor;
+                this.Afbeelding = afbeelding;
+                this.Naam = naam;
+                this.Tijd = tijd;
+                this.Omschrijving = omschrijving;
+                this.Docent = docent;
             }
 
-            public string Name { private set; get; }
+            public ImageSource Afbeelding { private set; get; }
 
-            public DateTime Birthday { private set; get; }
+            public string Naam { private set; get; }
 
-            public Color FavoriteColor { private set; get; }
+            public string Tijd { private set; get; }
+
+            public string Omschrijving { private set; get; }
+
+            public string Docent { private set; get; }
+
         };
 
         public Lessen ()
 		{
 
             //LISTVIEW DATA
-            Label header = new Label
-            {
-                Text = "ListView",
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
-                HorizontalOptions = LayoutOptions.Center
-            };
 
             // Define some data.
-            List<Person> people = new List<Person>
+            List<Les> lessen = new List<Les>
             {
-                new Person("Abigail", new DateTime(1975, 1, 15), Color.Aqua),
-                new Person("Bob", new DateTime(1976, 2, 20), Color.Black),
-                // ...etc.,...
-                new Person("Yvonne", new DateTime(1987, 1, 10), Color.Purple),
-                new Person("Zachary", new DateTime(1988, 2, 5), Color.Red)
+                new Les("test.png", "Future Rebels", "Dinsdag: 17.30", "Hier komt de omschrijving van de les 'Future Rebels' te staan", "Hier komt de docent van de les 'Future Rebels' te staan"),
+                new Les("test.png", "Selectie 1", "Dinsdag: 20.30", "Hier komt de omschrijving van de les 'Selectie 1' te staan", "Hier komt de docent van de les 'Selectie 1' te staan")
+
             };
 
             // Create the ListView.
             ListView listView = new ListView
             {
+
+                
+                SeparatorColor = Color.FromHex("#FF4081"),
+                
+                RowHeight = 100,
                 // Source of data items.
-                ItemsSource = people,
+                ItemsSource = lessen,
 
                 // Define template for displaying each item.
                 // (Argument of DataTemplate constructor is called for 
                 //      each item; it must return a Cell derivative.)
                 ItemTemplate = new DataTemplate(() =>
                 {
+
                     // Create views with bindings for displaying each property.
-                    Label nameLabel = new Label();
-                    nameLabel.SetBinding(Label.TextProperty, "Name");
+                    Label naamLabel = new Label();
+                    naamLabel.SetBinding(Label.TextProperty, "Naam");
+                    naamLabel.FontSize = 20;
+                    naamLabel.FontAttributes = FontAttributes.Bold;
+                    naamLabel.VerticalOptions = LayoutOptions.Center;
 
-                    Label birthdayLabel = new Label();
-                    birthdayLabel.SetBinding(Label.TextProperty,
-                        new Binding("Birthday", BindingMode.OneWay,
-                            null, null, "Born {0:d}"));
+                    Label tijdLabel = new Label();
+                    tijdLabel.SetBinding(Label.TextProperty, "Tijd");
 
-                    BoxView boxView = new BoxView();
-                    boxView.SetBinding(BoxView.ColorProperty, "FavoriteColor");
+
+                    Image afbeelding = new Image();
+                    afbeelding.VerticalOptions = LayoutOptions.FillAndExpand;
+                    afbeelding.HorizontalOptions = LayoutOptions.FillAndExpand;
+
+                    afbeelding.SetBinding(Image.SourceProperty, "Afbeelding");
+
+                    Grid viewGrid = new Grid();
+
+                    viewGrid.VerticalOptions = LayoutOptions.FillAndExpand;
+
+                    viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                    viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(70) });
+
+                    viewGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(100) });
+                    viewGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+                    viewGrid.Children.Add(afbeelding, 0, 0);
+                    viewGrid.Children.Add(naamLabel, 1, 0);
+                    viewGrid.Children.Add(tijdLabel, 1, 1);
+
+                    Grid.SetRowSpan(afbeelding, 2);
+
+
+
+
+
 
                     // Return an assembled ViewCell.
                     return new ViewCell
                     {
                         View = new StackLayout
                         {
-                            Padding = new Thickness(0, 5),
-                            Orientation = StackOrientation.Horizontal,
                             Children =
                                 {
-                                    boxView,
-                                    new StackLayout
-                                    {
-                                        VerticalOptions = LayoutOptions.Center,
-                                        Spacing = 0,
-                                        Children =
-                                        {
-                                            nameLabel,
-                                            birthdayLabel
-                                        }
-                                        }
+                                    viewGrid
                                 }
                         }
                     };
                 })
             };
+
+            listView.ItemSelected += async (sender, e) =>
+            {
+                var item = (Les)e.SelectedItem;
+
+                if (item == null)
+                {
+                }
+                else
+                {
+                    await Navigation.PushAsync(new LesInformatie(item));
+                }
+
+                listView.SelectedItem = null;
+            };
+
+
 
             // Accomodate iPhone status bar.
             //this.Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
@@ -146,5 +182,6 @@ namespace ljoy.paginas
 
             Content = hoofdWeergave;
         }
-	}
+    }
+
 }
