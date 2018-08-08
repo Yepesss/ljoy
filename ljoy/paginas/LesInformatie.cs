@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ljoy.entiteiten;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,14 +10,14 @@ namespace ljoy.paginas
 {
 	public class LesInformatie : ContentPage
 	{
-		public LesInformatie (Lessen.Les les)
+		public LesInformatie (Les les)
 		{
-            Title = les.Naam;
+            Title = les.naam;
 			Content = new StackLayout {
 				Children = {
-                    new Label { Text = les.Tijd },
-                    new Label { Text = les.Omschrijving },
-                    new Label { Text = les.Docent }
+                    new Label { Text = les.tijdstip },
+                    new Label { Text = les.omschrijving },
+                    new Label { Text = les.docent }
                 }
 			};
 		}

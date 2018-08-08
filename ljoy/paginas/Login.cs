@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace ljoy.paginas
@@ -14,6 +12,7 @@ namespace ljoy.paginas
         Button gast_knop;
         Image accountIcon;
         Image passwordIcon;
+        Image background;
 
 
         public Login()
@@ -54,10 +53,32 @@ namespace ljoy.paginas
 
             login_knop = new Button();
             login_knop.Text = "Log in";
-            login_knop.Command = new Command(_Login);
             login_knop.TextColor = Color.White;
             login_knop.BackgroundColor = Color.FromHex("#FF4081");
             login_knop.VerticalOptions = LayoutOptions.Center;
+            login_knop.Clicked += (object sender, EventArgs e) =>
+            {
+                //0 = gebruikersnaam niet gevonden
+                //1 = goed
+                //2 = wachtwoord fout
+                RestService con = new RestService();
+                string result = con.Inloggen(gebruikersnaam.Text, wachtwoord.Text).Result;
+                if ("0".Equals(result))
+                {
+                    DisplayAlert("Oeps..", "Gebruikersnaam bestaat niet..", "Ok");
+
+                }
+                else if ("1".Equals(result))
+                {
+                    DisplayAlert("Gelukt!", "Aan het inloggen..", "Ok");
+                    Navigation.PushAsync(new applicatie.ApplicatieStarter());
+                }
+                else if ("2".Equals(result))
+                {
+                    DisplayAlert("Oeps..", "Wachtwoord is fout..", "Ok");
+
+                }
+            };
 
 
 
@@ -72,14 +93,21 @@ namespace ljoy.paginas
 
             gast_knop = new Button();
             gast_knop.Text = "Ga door als gast";
-            gast_knop.Command = new Command(_Login);
             gast_knop.TextColor = Color.White;
             gast_knop.BackgroundColor = Color.FromHex("#FF4081");
             gast_knop.VerticalOptions = LayoutOptions.Center;
+            gast_knop.Clicked += (object sender, EventArgs e) =>
+            {
+                Navigation.PushAsync(new applicatie.ApplicatieStarter());
+            };
 
 
 
             var grid = new Grid();
+
+            grid.HorizontalOptions = LayoutOptions.FillAndExpand;
+            grid.VerticalOptions = LayoutOptions.FillAndExpand;
+
 
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(190) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
@@ -100,7 +128,7 @@ namespace ljoy.paginas
             grid.Children.Add(wachtwoord, 2, 2);
             grid.Children.Add(login_knop, 1, 3);
             grid.Children.Add(of, 1, 4);
-            grid.Children.Add(gast_knop, 1, 5);         
+            grid.Children.Add(gast_knop, 1, 5);
 
             Grid.SetColumnSpan(login_knop, 2);
             Grid.SetColumnSpan(of, 2);
@@ -118,12 +146,6 @@ namespace ljoy.paginas
                 }
             
             };
-        }
-
-        public void _Login()
-        {
-            DisplayAlert("Log in", gebruikersnaam.Text + " " + wachtwoord.Text, "Ok");
-            Navigation.PushAsync(new applicatie.ApplicatieStarter());
         }
     }
 }
