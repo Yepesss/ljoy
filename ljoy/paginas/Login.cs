@@ -49,8 +49,6 @@ namespace ljoy.paginas
 
             wachtwoord.Placeholder = "Wachtwoord";
 
-
-
             login_knop = new Button();
             login_knop.Text = "Log in";
             login_knop.TextColor = Color.White;
@@ -70,7 +68,8 @@ namespace ljoy.paginas
                 }
                 else if ("1".Equals(result))
                 {
-                    DisplayAlert("Gelukt!", "Aan het inloggen..", "Ok");
+                    helper.Settings.UsernameSettings = gebruikersnaam.Text;
+                    DisplayAlert("Gelukt!", helper.Settings.UsernameSettings, "Ok");
                     Navigation.PushAsync(new applicatie.ApplicatieStarter());
                 }
                 else if ("2".Equals(result))
