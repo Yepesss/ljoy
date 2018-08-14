@@ -81,6 +81,7 @@ namespace ljoy.paginas
 
 
             lstView.ItemsSource = grouped;
+            lstView.SeparatorColor = Color.Black;
             lstView.RowHeight = 40;
             lstView.HasUnevenRows = true;
             lstView.IsGroupingEnabled = true;
@@ -108,24 +109,79 @@ namespace ljoy.paginas
                 };
             });
 
+            lstView.SeparatorColor = Color.FromHex("#FF4081");
+
+            lstView.ItemTapped += async (o, e) => {
+                var myList = (ListView)o;
+                var les = (myList.SelectedItem as Les);
+                await Navigation.PushAsync(new paginas.LesInformatie(les));
+                myList.SelectedItem = null; // de-select the row
+            };
+
             lstView.ItemTemplate = new DataTemplate(() =>
             {
                 Label naamLabel = new Label();
+                naamLabel.TextColor = Color.Black;
                 naamLabel.SetBinding(Label.TextProperty, "naam");
-                naamLabel.FontSize = 20;
+                naamLabel.FontSize = 16;
                 naamLabel.FontAttributes = FontAttributes.Bold;
                 naamLabel.VerticalOptions = LayoutOptions.Center;
 
+                Label docentLabel = new Label();
+                docentLabel.TextColor = Color.Gray;
+                docentLabel.SetBinding(Label.TextProperty, "docent");
+                docentLabel.FontSize = 12;
+                docentLabel.FontAttributes = FontAttributes.Bold;
+                docentLabel.VerticalOptions = LayoutOptions.Center;
+
+                Label omschrijvingLabel = new Label();
+                omschrijvingLabel.TextColor = Color.Gray;
+                omschrijvingLabel.SetBinding(Label.TextProperty, "omschrijving");
+                omschrijvingLabel.LineBreakMode = LineBreakMode.TailTruncation;
+                omschrijvingLabel.FontSize = 12;
+                omschrijvingLabel.FontAttributes = FontAttributes.Italic;
+                omschrijvingLabel.VerticalOptions = LayoutOptions.Center;
+
                 Label tijdLabel = new Label();
+                tijdLabel.TextColor = Color.Black;
                 tijdLabel.SetBinding(Label.TextProperty, "tijdstip");
+                tijdLabel.FontSize = 20;
+                tijdLabel.FontAttributes = FontAttributes.Bold;
+                tijdLabel.VerticalOptions = LayoutOptions.Center;
+                tijdLabel.HorizontalOptions = LayoutOptions.End;
+
+                Image image = new Image();
+                image.Source = "right_arrow.png";
+                image.VerticalOptions = LayoutOptions.Center;
+                image.HorizontalOptions = LayoutOptions.Center;
+
+
 
                 Grid viewGrid = new Grid();
-                viewGrid.VerticalOptions = LayoutOptions.FillAndExpand;
-                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                viewGrid.VerticalOptions = LayoutOptions.CenterAndExpand;
+                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(10) });
+                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
+                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
+                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
+                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(10) });
 
-                viewGrid.Children.Add(naamLabel, 0, 0);
-                viewGrid.Children.Add(tijdLabel, 0, 1);
+
+                viewGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
+                viewGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(275) });
+                viewGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                viewGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
+
+
+
+                viewGrid.Children.Add(naamLabel, 1, 1);
+                viewGrid.Children.Add(docentLabel, 1, 2);
+                viewGrid.Children.Add(omschrijvingLabel, 1, 3);
+                viewGrid.Children.Add(tijdLabel, 1, 1);
+                viewGrid.Children.Add(image, 2, 2);
+
+                Grid.SetRowSpan(tijdLabel, 3);
+
+
 
                 // Return an assembled ViewCell.
                 return new ViewCell

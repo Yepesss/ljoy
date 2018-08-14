@@ -11,7 +11,8 @@ namespace ljoy.entiteiten
         public Les(){
             
         }
-        public Les(int lesid, string naam, string tijdstip, string docent, string dag, string omschrijving)
+
+        public Les(int lesid, string naam, string tijdstip, string docent, string dag, string omschrijving, int inschrijfbaar)
         {
             this.lesid = lesid;
             this.naam = naam;
@@ -19,6 +20,8 @@ namespace ljoy.entiteiten
             this.docent = docent;
             this.dag = dag;
             this.omschrijving = omschrijving;
+            this.inschrijfbaar = inschrijfbaar;
+
         }
 
         [JsonProperty(PropertyName = "lesid")]
@@ -38,6 +41,9 @@ namespace ljoy.entiteiten
 
         [JsonProperty(PropertyName = "omschrijving")]
         public string omschrijving { set; get; }
+
+        [JsonProperty(PropertyName = "inschrijfbaar")]
+        public int inschrijfbaar { set; get; }
 
     };
 

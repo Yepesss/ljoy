@@ -17,7 +17,9 @@ namespace ljoy.paginas
 				Children = {
                     new Label { Text = les.tijdstip },
                     new Label { Text = les.omschrijving },
-                    new Label { Text = les.docent }
+                    new Label { Text = les.docent },
+                    new Label { Text = les.dag },
+                    new Label { Text = les.inschrijfbaar.ToString()}
                 }
 			};
 		}
