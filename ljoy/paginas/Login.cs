@@ -19,7 +19,7 @@ namespace ljoy.paginas
         {
             NavigationPage.SetHasNavigationBar(this, false);
 
-            //BackgroundImage = "loginbackground.png";
+            BackgroundImage = "loginbackground.png";
 
             accountIcon = new Image();
             accountIcon.Source = "account_icon.png";

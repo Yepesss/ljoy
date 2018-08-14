@@ -82,15 +82,16 @@ namespace ljoy.paginas
 
             lstView.ItemsSource = grouped;
             lstView.SeparatorColor = Color.Black;
-            switch (Device.RuntimePlatform)
-            {
+
+            switch (Device.RuntimePlatform){
                 case Device.iOS:
-                    lstView.RowHeight = 110;
-                    break;
+                lstView.RowHeight = 110;
+                break;
                 case Device.Android:
-                    lstView.RowHeight = 40;
-                    break;
+                lstView.RowHeight = 40;
+                break;
             }
+
             lstView.HasUnevenRows = true;
             lstView.IsGroupingEnabled = true;
             lstView.GroupDisplayBinding = new Binding("dag");
