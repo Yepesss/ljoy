@@ -25,10 +25,7 @@ namespace ljoy
         public async Task<string> Inloggen(string gebruikersnaam, string wachtwoord)
         {
             var uri = new Uri(String.Format("http://ljoy.dx.am/login.php", string.Empty));
-            gebruiker = new Gebruiker();
-            gebruiker.gebruikersnaam = gebruikersnaam;
-            gebruiker.wachtwoord = wachtwoord;
-            var json = JsonConvert.SerializeObject(gebruiker);
+            var json = "{\"gebruikersnaam\":\"" + gebruikersnaam + "\",\"wachtwoord\":\"" + wachtwoord + "\"}";
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = null;
