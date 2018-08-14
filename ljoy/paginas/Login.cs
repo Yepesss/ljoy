@@ -54,28 +54,36 @@ namespace ljoy.paginas
             login_knop.TextColor = Color.White;
             login_knop.BackgroundColor = Color.FromHex("#FF4081");
             login_knop.VerticalOptions = LayoutOptions.Center;
-            login_knop.Clicked += (object sender, EventArgs e) =>
+            login_knop.Clicked += async (object sender, EventArgs e) =>
             {
                 //0 = gebruikersnaam niet gevonden
                 //1 = goed
                 //2 = wachtwoord fout
+                //3 = goed maar eerste keer ingelogd
                 RestService con = new RestService();
                 string result = con.Inloggen(gebruikersnaam.Text, wachtwoord.Text).Result;
                 if ("0".Equals(result))
                 {
-                    DisplayAlert("Oeps..", "Gebruikersnaam bestaat niet..", "Ok");
+                    await DisplayAlert("Oeps..", "Gebruikersnaam bestaat niet..", "Ok");
 
                 }
                 else if ("1".Equals(result))
                 {
-                    //helper.Settings.UsernameSettings = gebruikersnaam.Text;
-                    DisplayAlert("Welkom!", helper.Settings.UsernameSettings, "Ok");
-                    Navigation.PushAsync(new applicatie.ApplicatieStarter());
+                    if ("admin".Equals(gebruikersnaam.Text.ToLower())) {
+                        await Navigation.PushModalAsync(new NavigationPage(new applicatie.AdminStarter()));
+                    } else {
+                        //helper.Settings.UsernameSettings = gebruikersnaam.Text;
+                        await Navigation.PushAsync(new applicatie.ApplicatieStarter());
+                    }
                 }
                 else if ("2".Equals(result))
                 {
-                    DisplayAlert("Oeps..", "Wachtwoord is fout..", "Ok");
-
+                    await DisplayAlert("Oeps..", "Wachtwoord is fout..", "Ok");
+                }
+                else if ("3".Equals(result)) {
+                    RestService restService = new RestService();
+                    await restService.updateGebruiker(gebruikersnaam.Text, "A");
+                    await Navigation.PushAsync(new NavigationPage(new Login()));
                 }
             };
 

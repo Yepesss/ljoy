@@ -47,5 +47,41 @@ namespace ljoy
             Console.WriteLine(content);
             return JsonConvert.DeserializeObject<List<NieuwsEntiteit>>(content);
         }
+
+        public async Task<string> nieuwsToevoegen(string titel, string tekst)
+        {
+            var uri = new Uri("http://ljoy.dx.am/nieuwstoevoegen.php");
+            var json = "{\"titel\":\"" + titel + "\",\"tekst\":\"" + tekst + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+        }
+
+        public async Task<string> gebruikerToevoegen(string gebruikersnaam, string email, string wachtwoord)
+        {
+            var uri = new Uri("http://ljoy.dx.am/gebruikertoevoegen.php");
+            var json = "{\"gebruikersnaam\":\"" + gebruikersnaam + "\",\"wachtwoord\":\"" + wachtwoord + "\",\"email\":\"" + email + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+        }
+
+        public async Task<string> updateGebruiker(string gebruikersnaam, string wachtwoord)
+        {
+            var uri = new Uri("http://ljoy.dx.am/gebruikerupdaten.php");
+            var json = "{\"gebruikersnaam\":\"" + gebruikersnaam + "\",\"wachtwoord\":\"" + wachtwoord + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+        }
     }
 }

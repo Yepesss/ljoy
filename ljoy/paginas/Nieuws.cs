@@ -22,6 +22,13 @@ namespace ljoy.paginas
             nieuwsListView.ItemsSource = nieuws;
             nieuwsListView.RowHeight = 40;
 
+            nieuwsListView.ItemTapped += async (o, e) => {
+                var myList = (ListView)o;
+                var nieuwsSelectedItem = (myList.SelectedItem as NieuwsEntiteit);
+                await Navigation.PushAsync(new paginas.NieuwsInformatie(nieuwsSelectedItem));
+                myList.SelectedItem = null; // de-select the row
+            };
+
             nieuwsListView.ItemTemplate = new DataTemplate(() =>
             {
                 Label naamLabel = new Label();
@@ -40,6 +47,8 @@ namespace ljoy.paginas
 
                 viewGrid.Children.Add(naamLabel, 0, 0);
                 viewGrid.Children.Add(tijdLabel, 0, 1);
+
+
 
                 // Return an assembled ViewCell.
                 return new ViewCell
