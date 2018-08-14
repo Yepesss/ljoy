@@ -39,7 +39,7 @@ namespace ljoy.paginas
                 {
                     Margin = new Thickness(10, 10, 10, 10),
                     Children = {
-                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), BorderColor= Color.FromHex("#FF4081"), Content = new StackLayout{
+                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
                             Children = {
                                 new Label { Text = "Wat?", BackgroundColor = Color.FromHex("#FF4081"), HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold },
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },
@@ -47,7 +47,7 @@ namespace ljoy.paginas
                             }
                         }, HasShadow = true,
                         },
-                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), BorderColor= Color.FromHex("#FF4081"), Content = new StackLayout{
+                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
                             Children = {
                                 new Label { Text = "Wanneer?", BackgroundColor = Color.FromHex("#FF4081"), HorizontalOptions = LayoutOptions.FillAndExpand, HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold },
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },
@@ -55,7 +55,7 @@ namespace ljoy.paginas
                             }
                         }, HasShadow = true,
                         },
-                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), BorderColor= Color.FromHex("#FF4081"), Content = new StackLayout{
+                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
                             Children = {
                                 new Label { Text = "Wie?", BackgroundColor = Color.FromHex("#FF4081"), HorizontalOptions = LayoutOptions.FillAndExpand, HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold },
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },
@@ -80,7 +80,7 @@ namespace ljoy.paginas
                 {
                     Margin = new Thickness(10, 10, 10, 10),
                     Children = {
-                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), BorderColor= Color.FromHex("#FF4081"), Content = new StackLayout{
+                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
                             Children = {
                                 new Label { Text = "Wat?", BackgroundColor = Color.FromHex("#FF4081"), HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold },
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },
@@ -88,7 +88,7 @@ namespace ljoy.paginas
                             }
                         }, HasShadow = true,
                         },
-                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), BorderColor= Color.FromHex("#FF4081"), Content = new StackLayout{
+                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
                             Children = {
                                 new Label { Text = "Wanneer?", BackgroundColor = Color.FromHex("#FF4081"), HorizontalOptions = LayoutOptions.FillAndExpand, HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold },
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },
@@ -96,7 +96,7 @@ namespace ljoy.paginas
                             }
                         }, HasShadow = true,
                         },
-                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), BorderColor= Color.FromHex("#FF4081"), Content = new StackLayout{
+                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
                             Children = {
                                 new Label { Text = "Wie?", BackgroundColor = Color.FromHex("#FF4081"), HorizontalOptions = LayoutOptions.FillAndExpand, HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold },
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },
@@ -117,7 +117,7 @@ namespace ljoy.paginas
                 {
                     Margin = new Thickness(10, 10, 10, 10),
                     Children = {
-                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), BorderColor= Color.FromHex("#FF4081"), Content = new StackLayout{
+                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
                             Children = {
                                 new Label { Text = "Wat?", BackgroundColor = Color.FromHex("#FF4081"), HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold },
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },
@@ -125,7 +125,7 @@ namespace ljoy.paginas
                             }
                         }, HasShadow = true,
                         },
-                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), BorderColor= Color.FromHex("#FF4081"), Content = new StackLayout{
+                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
                             Children = {
                                 new Label { Text = "Wanneer?", BackgroundColor = Color.FromHex("#FF4081"), HorizontalOptions = LayoutOptions.FillAndExpand, HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold },
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },
@@ -133,7 +133,7 @@ namespace ljoy.paginas
                             }
                         }, HasShadow = true,
                         },
-                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), BorderColor= Color.FromHex("#FF4081"), Content = new StackLayout{
+                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
                             Children = {
                                 new Label { Text = "Wie?", BackgroundColor = Color.FromHex("#FF4081"), HorizontalOptions = LayoutOptions.FillAndExpand, HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold },
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },
