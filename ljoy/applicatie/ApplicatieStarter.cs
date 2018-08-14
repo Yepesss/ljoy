@@ -12,8 +12,8 @@ namespace ljoy.applicatie
 
 
             //Geeft de tabbar een kleur en de tekst en plaatjes erin
-            BarBackgroundColor = Color.LightPink;
-            BarTextColor = Color.Black;
+            BarBackgroundColor = Color.FromHex("#FF4081");
+            BarTextColor = Color.White;
 
             //Maak de pagina's aan
             maakPaginas();
@@ -21,13 +21,14 @@ namespace ljoy.applicatie
 
         private void maakPaginas()
         {
+
             //Maak de nieuwspagina aan
             var nieuwsPagina = new paginas.Nieuws();
             nieuwsPagina.Title = "Nieuws";
 
             //Maak de inschrijfpagina aan
-            var inschrijfPagina = new paginas.Inschrijf();
-            inschrijfPagina.Title = "Inschrijven";
+            var lesPagina = new paginas.Lessen();
+            lesPagina.Title = "Mijn lessen";
 
             //Maak de contactpagina aan
             var contactPagina = new paginas.Contact();
@@ -36,12 +37,12 @@ namespace ljoy.applicatie
             if (Device.RuntimePlatform == Device.iOS)
             {
                 nieuwsPagina.Icon = "nieuws.png";
-                inschrijfPagina.Icon = "inschrijven.png";
+                lesPagina.Icon = "inschrijven.png";
                 contactPagina.Icon = "contact.png";
             }
 
             this.Children.Add(nieuwsPagina);
-            this.Children.Add(inschrijfPagina);
+            this.Children.Add(lesPagina);
             this.Children.Add(contactPagina);
         }
     }
