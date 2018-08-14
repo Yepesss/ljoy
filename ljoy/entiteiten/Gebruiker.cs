@@ -6,6 +6,10 @@ namespace ljoy
 {
     public class Gebruiker
     {
+        public Gebruiker () {
+            
+        }
+
         public int id { set; get; }
 
         public string gebruikersnaam { set; get; }

@@ -12,8 +12,6 @@ namespace ljoy
     {
         HttpClient client;
 
-        Gebruiker gebruiker;
-
         public RestService()
         {
             client = new HttpClient
@@ -40,6 +38,14 @@ namespace ljoy
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             Console.WriteLine(content);
             return JsonConvert.DeserializeObject<List<Les>>(content);
+        }
+
+        public async Task<List<NieuwsEntiteit>> VerkrijgNieuws()
+        {
+            var response = await client.GetAsync("http://ljoy.dx.am/nieuws.php").ConfigureAwait(false);
+            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            Console.WriteLine(content);
+            return JsonConvert.DeserializeObject<List<NieuwsEntiteit>>(content);
         }
     }
 }

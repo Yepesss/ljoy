@@ -9,12 +9,16 @@ namespace ljoy
     {
         public App()
         {
-            MainPage = new NavigationPage(new paginas.Login());
+            if (helper.Settings.UsernameSettings != null && !"".Equals(helper.Settings.UsernameSettings)) {
+                MainPage = new applicatie.ApplicatieStarter();
+            } else {
+                MainPage = new NavigationPage(new paginas.Login());
+            }
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            helper.Settings.RemoveUserName();
         }
 
         protected override void OnSleep()

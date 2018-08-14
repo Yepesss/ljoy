@@ -8,7 +8,14 @@ namespace ljoy.entiteiten
 {
     public class Les
     {
+<<<<<<< HEAD
         public Les(int lesid, string naam, string tijdstip, string docent, string dag, string omschrijving, int inschrijfbaar)
+=======
+        public Les(){
+            
+        }
+        public Les(int lesid, string naam, string tijdstip, string docent, string dag, string omschrijving)
+>>>>>>> jennes
         {
             this.lesid = lesid;
             this.naam = naam;
