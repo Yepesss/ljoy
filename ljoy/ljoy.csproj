@@ -10,6 +10,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="0.8.0-preview" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="3.1.0.697729" />
+    <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="App.xaml" />
@@ -18,8 +19,12 @@
   <ItemGroup>
     <Folder Include="applicatie\" />
     <Folder Include="helper\" />
+    <Folder Include="email\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="applicatie\Contact.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove=".DS_Store" />
   </ItemGroup>
 </Project>

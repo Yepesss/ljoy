@@ -68,8 +68,8 @@ namespace ljoy.paginas
                 }
                 else if ("1".Equals(result))
                 {
-                    helper.Settings.UsernameSettings = gebruikersnaam.Text;
-                    DisplayAlert("Gelukt!", helper.Settings.UsernameSettings, "Ok");
+                    //helper.Settings.UsernameSettings = gebruikersnaam.Text;
+                    DisplayAlert("Welkom!", helper.Settings.UsernameSettings, "Ok");
                     Navigation.PushAsync(new applicatie.ApplicatieStarter());
                 }
                 else if ("2".Equals(result))
@@ -99,8 +99,6 @@ namespace ljoy.paginas
             {
                 Navigation.PushAsync(new applicatie.ApplicatieStarter());
             };
-
-
 
             var grid = new Grid();
 
@@ -132,11 +130,6 @@ namespace ljoy.paginas
             Grid.SetColumnSpan(login_knop, 2);
             Grid.SetColumnSpan(of, 2);
             Grid.SetColumnSpan(gast_knop, 2);
-
-
-
-
-
 
             Content = new StackLayout
             {
