@@ -14,6 +14,7 @@ namespace ljoy.paginas
         Button gast_knop;
         Image accountIcon;
         Image passwordIcon;
+
         Label wachtwoordVergeten;
         string result;
 
@@ -65,7 +66,7 @@ namespace ljoy.paginas
                     popups.laadscherm scherm = new popups.laadscherm();
                     await Navigation.PushPopupAsync(scherm);
 
-                    await Task.Run(async () =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                    await Task.Run(() =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
                     {
                         //0 = gebruikersnaam niet gevonden
                         //1 = goed
@@ -80,7 +81,6 @@ namespace ljoy.paginas
 
                         await Navigation.RemovePopupPageAsync(scherm);
                         await DisplayAlert("Oeps..", "Gebruikersnaam bestaat niet..", "Ok");
-
                     }
                     else if ("1".Equals(result))
                     {
@@ -107,7 +107,6 @@ namespace ljoy.paginas
                             await restService.updateGebruiker(gebruikersnaam.Text, "A");
                             await Navigation.PushAsync(new NavigationPage(new Login()));
                         });
-
                     }
                 }
                 catch(Exception ex)
@@ -119,9 +118,6 @@ namespace ljoy.paginas
 
 
             };
-
-
-
 
             of = new Label();
             of.HorizontalTextAlignment = TextAlignment.Center;
