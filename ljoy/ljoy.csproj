@@ -20,7 +20,6 @@
   <ItemGroup>
     <Folder Include="applicatie\" />
     <Folder Include="helper\" />
-    <Folder Include="email\" />
     <Folder Include="adminpaginas\" />
   </ItemGroup>
   <ItemGroup>
