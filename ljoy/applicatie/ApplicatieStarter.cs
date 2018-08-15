@@ -28,7 +28,7 @@ namespace ljoy.applicatie
 
             //Maak de inschrijfpagina aan
             var lesPagina = new paginas.Lessen();
-            lesPagina.Title = "Mijn lessen";
+            lesPagina.Title = "Lessen";
 
             //Maak de contactpagina aan
             var contactPagina = new paginas.Contact();
