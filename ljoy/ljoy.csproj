@@ -22,10 +22,10 @@
     <Folder Include="applicatie\" />
     <Folder Include="helper\" />
     <Folder Include="adminpaginas\" />
+    <Folder Include="email\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="applicatie\Contact.cs" />
-    <Compile Remove="email\SendMail.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove=".DS_Store" />

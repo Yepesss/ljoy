@@ -22,7 +22,7 @@ namespace ljoy.paginas
         {
             NavigationPage.SetHasNavigationBar(this, false);
 
-            //BackgroundImage = "loginbackground.png";
+            BackgroundImage = "loginbackground.png";
 
             accountIcon = new Image();
             accountIcon.Source = "account_icon.png";
@@ -81,7 +81,6 @@ namespace ljoy.paginas
 
                         await Navigation.RemovePopupPageAsync(scherm);
                         await DisplayAlert("Oeps..", "Gebruikersnaam bestaat niet..", "Ok");
-
                     }
                     else if ("1".Equals(result))
                     {
@@ -113,7 +112,11 @@ namespace ljoy.paginas
                 catch(Exception ex)
                 {
                     await DisplayAlert("Oeps..", ex.ToString(), "Ok");
+
                 }
+
+
+
             };
 
             of = new Label();
