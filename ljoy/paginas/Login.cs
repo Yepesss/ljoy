@@ -1,4 +1,6 @@
 ﻿using System;
+using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace ljoy.paginas
@@ -12,7 +14,6 @@ namespace ljoy.paginas
         Button gast_knop;
         Image accountIcon;
         Image passwordIcon;
-        Image background;
 
 
         public Login()
@@ -81,9 +82,13 @@ namespace ljoy.paginas
                     await DisplayAlert("Oeps..", "Wachtwoord is fout..", "Ok");
                 }
                 else if ("3".Equals(result)) {
+                    
+                    popups.EersteKeerAanmelden eersteKeerAanmelden = new popups.EersteKeerAanmelden();
+                    await Navigation.PushPopupAsync(eersteKeerAanmelden);
+
                     RestService restService = new RestService();
                     await restService.updateGebruiker(gebruikersnaam.Text, "A");
-                    await Navigation.PushAsync(new NavigationPage(new Login()));
+                    await Navigation.PushAsync(new applicatie.ApplicatieStarter());
                 }
             };
 
