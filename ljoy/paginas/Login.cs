@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Extensions;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ljoy.paginas
@@ -12,8 +14,8 @@ namespace ljoy.paginas
         Button gast_knop;
         Image accountIcon;
         Image passwordIcon;
-        Image background;
-
+        Label wachtwoordVergeten;
+        string result;
 
         public Login()
         {
@@ -37,14 +39,16 @@ namespace ljoy.paginas
 
             gebruikersnaam = new Entry();
             gebruikersnaam.HorizontalTextAlignment = TextAlignment.Start;
+            gebruikersnaam.HorizontalOptions = LayoutOptions.FillAndExpand;
             gebruikersnaam.VerticalOptions = LayoutOptions.Center;
             gebruikersnaam.Placeholder = "Gebruikersnaam";
-            gebruikersnaam.VerticalOptions = LayoutOptions.Center;
 
 
             wachtwoord = new Entry();
             wachtwoord.HorizontalTextAlignment = TextAlignment.Start;
             wachtwoord.IsPassword = true;
+            wachtwoord.HorizontalOptions = LayoutOptions.FillAndExpand;
+
             wachtwoord.VerticalOptions = LayoutOptions.Center;
 
             wachtwoord.Placeholder = "Wachtwoord";
@@ -56,35 +60,64 @@ namespace ljoy.paginas
             login_knop.VerticalOptions = LayoutOptions.Center;
             login_knop.Clicked += async (object sender, EventArgs e) =>
             {
-                //0 = gebruikersnaam niet gevonden
-                //1 = goed
-                //2 = wachtwoord fout
-                //3 = goed maar eerste keer ingelogd
-                RestService con = new RestService();
-                string result = con.Inloggen(gebruikersnaam.Text, wachtwoord.Text).Result;
-                if ("0".Equals(result))
+                try
                 {
-                    await DisplayAlert("Oeps..", "Gebruikersnaam bestaat niet..", "Ok");
+                    popups.laadscherm scherm = new popups.laadscherm();
+                    await Navigation.PushPopupAsync(scherm);
 
-                }
-                else if ("1".Equals(result))
-                {
-                    if ("admin".Equals(gebruikersnaam.Text.ToLower())) {
-                        await Navigation.PushModalAsync(new NavigationPage(new applicatie.AdminStarter()));
-                    } else {
-                        //helper.Settings.UsernameSettings = gebruikersnaam.Text;
-                        await Navigation.PushAsync(new applicatie.ApplicatieStarter());
+                    await Task.Run(async () =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                    {
+                        //0 = gebruikersnaam niet gevonden
+                        //1 = goed
+                        //2 = wachtwoord fout
+                        //3 = goed maar eerste keer ingelogd
+                        RestService con = new RestService();
+                        result = con.Inloggen(gebruikersnaam.Text, wachtwoord.Text).Result;
+                    });
+
+                    if ("0".Equals(result))
+                    {
+
+                        await Navigation.RemovePopupPageAsync(scherm);
+                        await DisplayAlert("Oeps..", "Gebruikersnaam bestaat niet..", "Ok");
+
+                    }
+                    else if ("1".Equals(result))
+                    {
+                        if ("admin".Equals(gebruikersnaam.Text.ToLower()))
+                        {
+                            await Navigation.PushModalAsync(new NavigationPage(new applicatie.AdminStarter()));
+                        }
+                        else
+                        {
+                            await Navigation.PushAsync(new applicatie.ApplicatieStarter());
+                            //helper.Settings.UsernameSettings = gebruikersnaam.Text;
+                            await Navigation.RemovePopupPageAsync(scherm);
+                        }
+                    }
+                    else if ("2".Equals(result))
+                    {
+                        await DisplayAlert("Oeps..", "Wachtwoord is fout..", "Ok");
+                    }
+                    else if ("3".Equals(result))
+                    {
+                        await Task.Run(async () =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                        {
+                            RestService restService = new RestService();
+                            await restService.updateGebruiker(gebruikersnaam.Text, "A");
+                            await Navigation.PushAsync(new NavigationPage(new Login()));
+                        });
+
                     }
                 }
-                else if ("2".Equals(result))
+                catch(Exception ex)
                 {
-                    await DisplayAlert("Oeps..", "Wachtwoord is fout..", "Ok");
+                    await DisplayAlert("Oeps..", ex.ToString(), "Ok");
+
                 }
-                else if ("3".Equals(result)) {
-                    RestService restService = new RestService();
-                    await restService.updateGebruiker(gebruikersnaam.Text, "A");
-                    await Navigation.PushAsync(new NavigationPage(new Login()));
-                }
+
+
+
             };
 
 
@@ -95,6 +128,16 @@ namespace ljoy.paginas
             of.Text = "OF";
             of.FontAttributes = FontAttributes.Bold;
             of.VerticalTextAlignment = TextAlignment.Center;
+
+            wachtwoordVergeten = new Label();
+            wachtwoordVergeten.Text = "Wachtwoord vergeten?";
+            wachtwoordVergeten.FontAttributes = FontAttributes.Italic;
+            wachtwoordVergeten.HorizontalTextAlignment = TextAlignment.Center;
+            wachtwoordVergeten.BackgroundColor = Color.Transparent;
+            wachtwoordVergeten.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command(() => OnLabelClicked()),
+            });
 
 
 
@@ -108,44 +151,47 @@ namespace ljoy.paginas
                 Navigation.PushAsync(new applicatie.ApplicatieStarter());
             };
 
-            var grid = new Grid();
-
-            grid.HorizontalOptions = LayoutOptions.FillAndExpand;
-            grid.VerticalOptions = LayoutOptions.FillAndExpand;
-
-
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(190) });
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(190) });
-
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(30) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
-
-            grid.Children.Add(accountIcon, 1, 1);
-            grid.Children.Add(passwordIcon, 1, 2);
-            grid.Children.Add(gebruikersnaam, 2, 1);
-            grid.Children.Add(wachtwoord, 2, 2);
-            grid.Children.Add(login_knop, 1, 3);
-            grid.Children.Add(of, 1, 4);
-            grid.Children.Add(gast_knop, 1, 5);
-
-            Grid.SetColumnSpan(login_knop, 2);
-            Grid.SetColumnSpan(of, 2);
-            Grid.SetColumnSpan(gast_knop, 2);
-
             Content = new StackLayout
             {
-                Children = {
-                    grid
+                Margin = new Thickness(20, 20, 20, 20),
+                VerticalOptions = LayoutOptions.Center,
+                Children =
+                {
+                    new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, BorderColor = Color.White, VerticalOptions = LayoutOptions.Center, Opacity = 0.9f,
+                        Content = new StackLayout {
+                        Children =
+                            {
+                                new StackLayout{
+                                    Orientation = StackOrientation.Horizontal,
+                                    Children =
+                                    {
+                                        accountIcon,
+                                        gebruikersnaam
+                                    }
+                                },
+                                new StackLayout{
+                                    Orientation = StackOrientation.Horizontal,
+                                    Children =
+                                    {
+                                        passwordIcon,
+                                        wachtwoord
+                                    }
+                                },
+                                login_knop,
+                                wachtwoordVergeten,
+                                new BoxView() { Color = Color.Black, HeightRequest = 1  },
+                                gast_knop
+
+                            }
+                        }
+                    }
                 }
-            
             };
+        }
+
+        private void OnLabelClicked()
+        {
+            Navigation.PushPopupAsync(new popups.wachtwoord());
         }
     }
 }

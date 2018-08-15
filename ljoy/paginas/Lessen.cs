@@ -81,7 +81,7 @@ namespace ljoy.paginas
 
 
             lstView.ItemsSource = grouped;
-            lstView.SeparatorColor = Color.Black;
+            lstView.SeparatorColor = Color.FromHex("#FF4081");
 
             switch (Device.RuntimePlatform){
                 case Device.iOS:
@@ -117,8 +117,6 @@ namespace ljoy.paginas
                     }
                 };
             });
-
-            lstView.SeparatorColor = Color.FromHex("#FF4081");
 
             lstView.ItemTapped += async (o, e) => {
                 var myList = (ListView)o;
