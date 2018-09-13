@@ -16,7 +16,7 @@ namespace ljoy.paginas
             Content = new ScrollView { Content = new StackLayout {
                 Margin = new Thickness(10, 10, 10, 10),
                 Children = {
-                new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), BorderColor= Color.FromHex("#FF4081"), Content = new StackLayout{
+                new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
                             Children = {
                                 new Label { Text = nieuws.tekst, TextColor = Color.White, FontSize = 14 },
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },

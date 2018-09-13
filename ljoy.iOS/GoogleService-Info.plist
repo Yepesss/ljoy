@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>723068433259-9jk1ikhqdigl59tb8444pcedpc1hfdgn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.723068433259-9jk1ikhqdigl59tb8444pcedpc1hfdgn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB9OkffGaYKdTe4Ir2IIiGHcZ_oYMl9v88</string>
+	<key>GCM_SENDER_ID</key>
+	<string>723068433259</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ljoy.ljoy</string>
+	<key>PROJECT_ID</key>
+	<string>ljoy-76a49</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ljoy-76a49.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:723068433259:ios:61273e5b3e7fe665</string>
+	<key>DATABASE_URL</key>
+	<string>https://ljoy-76a49.firebaseio.com</string>
+</dict>
+</plist>

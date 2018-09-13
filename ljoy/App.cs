@@ -1,19 +1,39 @@
 using System;
+using Plugin.FirebasePushNotification;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ljoy
 {
     public partial class App : Application
     {
         public App()
         {
+            CrossFirebasePushNotification.Current.Subscribe("nieuws");
+
             if (helper.Settings.UsernameSettings != null && !"".Equals(helper.Settings.UsernameSettings)) {
                 MainPage = new applicatie.ApplicatieStarter();
             } else {
                 MainPage = new NavigationPage(new paginas.Login());
             }
+
+            CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
+            {
+                System.Diagnostics.Debug.WriteLine($"TOKEN : {p.Token}");
+            };
+
+            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+            {
+                System.Diagnostics.Debug.WriteLine("Received");
+            };
+
+            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            {
+                System.Diagnostics.Debug.WriteLine("Opened");
+                foreach (var data in p.Data)
+                {
+                    System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+                }
+            };
         }
 
         protected override void OnStart()

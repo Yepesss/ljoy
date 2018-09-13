@@ -147,9 +147,6 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>3.2.0.637442-pre1</Version>
-    </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>
@@ -158,6 +155,12 @@
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.1.4.168</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.FirebasePushNotification">
+      <Version>2.3.5</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.Maps">
+      <Version>3.2.0.809874-pre3</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -179,6 +182,7 @@
     <BundleResource Include="Resources\route.png" />
     <BundleResource Include="Resources\website.png" />
     <BundleResource Include="Resources\youtube.png" />
+    <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\box1.png" />
