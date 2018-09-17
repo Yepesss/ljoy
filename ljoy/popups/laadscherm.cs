@@ -12,7 +12,7 @@ namespace ljoy.popups
     {
         public laadscherm()
         {
-            ActivityIndicator laden = new ActivityIndicator { IsVisible = true, IsRunning = true, VerticalOptions = LayoutOptions.Center};
+            ActivityIndicator laden = new ActivityIndicator { IsRunning = true, VerticalOptions = LayoutOptions.Center, IsVisible = true};
 
             Content = laden;
 

@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,6 +58,7 @@ namespace ljoy
 
             HttpResponseMessage response = null;
             response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            SendNotificationFromFirebaseCloud(titel, tekst);
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
         }
@@ -82,6 +85,57 @@ namespace ljoy
             response = await client.PostAsync(uri, content).ConfigureAwait(false);
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
+        }
+
+        public async Task<string> WachtwoordVeranderen(string gebruikersnaam_of_email, string wachtwoord)
+        {
+            var uri = new Uri("http://ljoy.dx.am/wachtwoordveranderen.php");
+            var json = "{\"gebruikersnaam_of_email\":\"" + gebruikersnaam_of_email + "\",\"wachtwoord\":\"" + wachtwoord + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+        }
+
+        public async Task<string> WachtwoordVeranderenEnActiveren(string gebruikersnaam_of_email, string wachtwoord)
+        {
+            var uri = new Uri("http://ljoy.dx.am/wachtwoordveranderenenactiveren.php");
+            var json = "{\"gebruikersnaam_of_email\":\"" + gebruikersnaam_of_email + "\",\"wachtwoord\":\"" + wachtwoord + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+        }
+
+        private String SendNotificationFromFirebaseCloud(string titel, string tekst)
+        {
+            var result = "-1";
+            var webAddr = "https://fcm.googleapis.com/fcm/send";
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Headers.Add("Authorization:key=" + "AAAAqFo8s2s:APA91bGhRox1QT84GzwmaGMKRN736J_Fyi5bdET9jWKlR2-8xFMR5mPOxWegwuHU2T8RKuAEkO-sceGNNE6w0mroN5_4xAcGS9kAOLyud-OnpAx3s7C1SeMgAJi02YBGH5B76x6SpDOF");
+            httpWebRequest.Method = "POST";
+
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = "{\"to\": \"/topics/nieuws\",\"data\": {\"title\":\""+titel+"\",\"body\":\""+tekst.Substring(0,40)+"..."+"\"}}";
+
+                streamWriter.Write(json);
+                streamWriter.Flush();
+            }
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+
+            return result;
         }
     }
 }

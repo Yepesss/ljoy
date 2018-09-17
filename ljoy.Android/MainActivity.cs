@@ -6,10 +6,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.FirebasePushNotification;
 
 namespace ljoy.Droid
 {
-    [Activity(Label = "ljoy", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "ljoy", Icon = "@drawable/Icon180", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -19,7 +20,7 @@ namespace ljoy.Droid
 
             base.OnCreate(bundle);
             Rg.Plugins.Popup.Popup.Init(this, bundle);
-            if(CheckSelfPermission("android.permission.ACCESS_FINE_LOCATION") == Permission.Granted)
+            if (CheckSelfPermission("android.permission.ACCESS_FINE_LOCATION") == Permission.Granted)
             {
 
             }
@@ -31,6 +32,8 @@ namespace ljoy.Droid
 
 
             LoadApplication(new App());
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
+
         }
 
         public override void OnBackPressed()

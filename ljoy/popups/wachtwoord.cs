@@ -10,19 +10,41 @@ namespace ljoy.popups
 {
 	public class wachtwoord : PopupPage
 	{
-		public wachtwoord ()
+        private static Random random = new Random();
+
+
+        public wachtwoord ()
 		{
+            Entry gebruikersnaam_of_email = new Entry { Placeholder = "Gebruikersnaam of email" };
+
             Button verzendknop = new Button { Text = "Wachtwoord opvragen", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
-            verzendknop.Clicked += (object sender, EventArgs e) =>
+            verzendknop.Clicked += async (object sender, EventArgs e) =>
             {
-                PopupNavigation.Instance.PopAsync();
+                RestService restService = new RestService();
+                string nieuwWachtwoord = genereerWachtwoord();
+                var response = await restService.WachtwoordVeranderen(gebruikersnaam_of_email.Text, nieuwWachtwoord);
+                if (response.Equals("1"))
+                {
+                    await DisplayAlert("Oeps..", "Gebruikersnaam of email bestaat niet..", "Ok");
+
+                }
+                else if (response.Equals("2"))
+                {
+                    await DisplayAlert("Oeps..", "Er is iets fout gegaan, probeer het opnieuw.", "Ok");
+
+                }
+                else
+                {
+                    email.SendMail mail = new email.SendMail();
+                    mail.EmailVerzenden("Nieuw wachtwoord", "Uw nieuwe wachtwoord is " + nieuwWachtwoord, response, "Skijndelaar");
+                }
+                await PopupNavigation.Instance.PopAsync();
             };
             Button terugknop = new Button { Text = "Terug", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White};
             terugknop.Clicked += (object sender, EventArgs e) =>
             {
                 PopupNavigation.Instance.PopAsync();
             };
-            Entry gebruikersnaam_of_email = new Entry { Placeholder = "Gebruikersnaam of email" };
 
             Content = new StackLayout {
                 Margin = new Thickness(10, 10, 10, 10),
@@ -44,5 +66,11 @@ namespace ljoy.popups
 				}
 			};
 		}
-	}
+
+        private string genereerWachtwoord()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, 8).Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+    }
 }
