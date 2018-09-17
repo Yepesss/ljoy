@@ -1,9 +1,7 @@
 using Plugin.FirebasePushNotification;
 using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ljoy
 {
     public partial class App : Application
@@ -27,7 +25,6 @@ namespace ljoy
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
                 System.Diagnostics.Debug.WriteLine("Received");
-
             };
 
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
@@ -37,8 +34,6 @@ namespace ljoy
                 {
                     System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
                 }
-
-
             };
         }
 

@@ -149,7 +149,7 @@ namespace ljoy.paginas
                 VerticalOptions = LayoutOptions.Center,
                 Children =
                 {
-                    new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, BorderColor = Color.White, VerticalOptions = LayoutOptions.Center, Opacity = 0.9f,
+                    new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, VerticalOptions = LayoutOptions.Center, Opacity = 0.9f,
                         Content = new StackLayout {
                         Children =
                             {

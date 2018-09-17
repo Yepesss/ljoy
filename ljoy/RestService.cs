@@ -108,7 +108,6 @@ namespace ljoy
             HttpResponseMessage response = null;
             response = await client.PostAsync(uri, content).ConfigureAwait(false);
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
         }
 
         private String SendNotificationFromFirebaseCloud(string titel, string tekst)
@@ -123,8 +122,7 @@ namespace ljoy
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
-                string json = "{\"to\": \"/topics/nieuws\",\"data\": {\"title\":\""+titel+"\",\"body\":\""+tekst.Substring(0,40)+"..."+"\"}}";
-
+                string json = "{\"to\": \"/topics/nieuws\",\"data\": {\"title\":\"" + titel + "\",\"body\":\"" + tekst.Substring(0, 40) + "..." + "\"}}";
                 streamWriter.Write(json);
                 streamWriter.Flush();
             }
