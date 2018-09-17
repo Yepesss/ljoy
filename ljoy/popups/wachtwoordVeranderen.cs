@@ -23,6 +23,7 @@ namespace ljoy.popups
             {
                 if (wachtwoordNieuw.Text.Equals(wachtwoordOpnieuw.Text))
                 {
+                    helper.Settings.UsernameSettings = gebruikersnaam;
                     RestService restService = new RestService();
                     var response = await restService.WachtwoordVeranderenEnActiveren(gebruikersnaam, wachtwoordNieuw.Text);
                     await Navigation.PushAsync(new applicatie.ApplicatieStarter());

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ljoy
+namespace ljoy.entiteiten
 {
     public class Gebruiker
     {
