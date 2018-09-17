@@ -40,20 +40,16 @@ namespace ljoy.email
             }
         }
 
-                public void EmailVerzenden(string titel, string tekst, string email, string gebruikersnaam)
+        public void EmailVerzenden(string titel, string tekst, string email, string gebruikersnaam)
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("L-Joy", "ljoydancefactoryapp@gmail.com"));
             message.To.Add(new MailboxAddress(gebruikersnaam, email));
-            message.Subject = "How you doin'?";
+            message.Subject = titel;
 
             message.Body = new TextPart("plain")
             {
-                Text = @"Hey Chandler,
-
-I just wanted to let you know that Monica and I were going to go play some paintball, you in?
-
--- Joey"
+                Text = tekst
             };
 
             using (var client = new SmtpClient())

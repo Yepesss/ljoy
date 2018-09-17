@@ -1,5 +1,5 @@
-using System;
 using Plugin.FirebasePushNotification;
+using System;
 using Xamarin.Forms;
 
 namespace ljoy
@@ -8,6 +8,7 @@ namespace ljoy
     {
         public App()
         {
+
             CrossFirebasePushNotification.Current.Subscribe("nieuws");
 
             if (helper.Settings.UsernameSettings != null && !"".Equals(helper.Settings.UsernameSettings)) {

@@ -87,6 +87,29 @@ namespace ljoy
 
         }
 
+        public async Task<string> WachtwoordVeranderen(string gebruikersnaam_of_email, string wachtwoord)
+        {
+            var uri = new Uri("http://ljoy.dx.am/wachtwoordveranderen.php");
+            var json = "{\"gebruikersnaam_of_email\":\"" + gebruikersnaam_of_email + "\",\"wachtwoord\":\"" + wachtwoord + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+        }
+
+        public async Task<string> WachtwoordVeranderenEnActiveren(string gebruikersnaam_of_email, string wachtwoord)
+        {
+            var uri = new Uri("http://ljoy.dx.am/wachtwoordveranderenenactiveren.php");
+            var json = "{\"gebruikersnaam_of_email\":\"" + gebruikersnaam_of_email + "\",\"wachtwoord\":\"" + wachtwoord + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        }
+
         private String SendNotificationFromFirebaseCloud(string titel, string tekst)
         {
             var result = "-1";
@@ -100,7 +123,6 @@ namespace ljoy
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 string json = "{\"to\": \"/topics/nieuws\",\"data\": {\"title\":\"" + titel + "\",\"body\":\"" + tekst.Substring(0, 40) + "..." + "\"}}";
-
                 streamWriter.Write(json);
                 streamWriter.Flush();
             }

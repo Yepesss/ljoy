@@ -34,7 +34,7 @@ namespace ljoy.paginas
             passwordIcon.Source = "password_icon.png";
             passwordIcon.HorizontalOptions = LayoutOptions.Center;
             passwordIcon.VerticalOptions = LayoutOptions.Center;
-            accountIcon.Aspect = Aspect.AspectFit;
+            passwordIcon.Aspect = Aspect.AspectFit;
 
 
 
@@ -101,12 +101,8 @@ namespace ljoy.paginas
                     }
                     else if ("3".Equals(result))
                     {
-                        await Task.Run(async () =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
-                        {
-                            RestService restService = new RestService();
-                            await restService.updateGebruiker(gebruikersnaam.Text, "A");
-                            await Navigation.PushAsync(new NavigationPage(new Login()));
-                        });
+                        popups.wachtwoordVeranderen wachtwoordVeranderen = new popups.wachtwoordVeranderen(gebruikersnaam.Text);
+                        await Navigation.PushPopupAsync(wachtwoordVeranderen);
                     }
                 }
                 catch(Exception ex)

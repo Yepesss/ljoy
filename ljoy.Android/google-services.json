@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "723068433259",
+    "firebase_url": "https://ljoy-76a49.firebaseio.com",
+    "project_id": "ljoy-76a49",
+    "storage_bucket": "ljoy-76a49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723068433259:android:9fbc1fdaaf8b114f",
+        "android_client_info": {
+          "package_name": "nl.ljoy.ljoy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723068433259-bfs1o08cphhve7ikn0d0fhcg5ao2aokg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBuvZQ3K2O3mVluzYDecvc3y4UtN2MYuQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
