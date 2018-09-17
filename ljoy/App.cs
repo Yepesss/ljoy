@@ -38,7 +38,7 @@ namespace ljoy
 
         protected override void OnStart()
         {
-            helper.Settings.RemoveUserName();
+            
         }
 
         protected override void OnSleep()
