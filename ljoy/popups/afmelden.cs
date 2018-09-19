@@ -12,11 +12,17 @@ namespace ljoy.popups
 	{
 		public afmelden (entiteiten.Les les)
 		{
+            Entry reden = new Entry { Placeholder = "Reden (optioneel)" };
+
             Button verzendknop = new Button { Text = "Meld af", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
+            string gebruikersnaam = helper.Settings.UsernameSettings;
             verzendknop.Clicked += (object sender, EventArgs e) =>
             {
                 email.SendMail mail = new email.SendMail();
-                mail.EmailVerzenden("Afmelding " + les.naam + " van " + les.dag, "Afmelding");
+                mail.EmailVerzenden("Afmelding", 
+                                    "Afmelding van: " + gebruikersnaam + "\r\n" + 
+                                    "Voor de les: " + les.naam + " van " + les.dag + "\r\n" +
+                                    "Reden: " + reden.Text);
                 DisplayAlert("Gelukt!", "U heeft u afgemeld!", "Oké");
                 PopupNavigation.Instance.PopAsync();
             };
@@ -25,7 +31,6 @@ namespace ljoy.popups
             {
                 PopupNavigation.Instance.PopAsync();
             };
-            Entry reden = new Entry { Placeholder = "Reden (optioneel)" };
 
             Content = new StackLayout {
                 Margin = new Thickness(10, 10, 10, 10),

@@ -36,7 +36,13 @@ namespace ljoy.popups
                 else
                 {
                     email.SendMail mail = new email.SendMail();
-                    mail.EmailVerzenden("Nieuw wachtwoord", "Uw nieuwe wachtwoord is " + nieuwWachtwoord, response, "Skijndelaar");
+                    mail.EmailVerzenden("Nieuw wachtwoord", 
+                                        "Wij hebben uw wachtwoord gewijzigd op aanvraag van u." + "\r\n" + "\r\n" + 
+                                        "Uw nieuwe wachtwoord is: " + nieuwWachtwoord + "\r\n" + "\r\n" +
+                                        "Heeft u dit niet aangevraagd, neem dan contact op met L-Joy Dancefactory. Het telefoonnummer kunt u vinden op de site: www.l-joy.nl" + "\r\n" +
+                                        "Wanneer u met uw nieuwe wachtwoord inlogd, wordt u gevraagd het wachtwoord meteen te veranderen." + "\r\n" + "\r\n" +
+                                        "Met vriendelijke groet," + "\r\n" +
+                                        "L-Joy Dancefactory", response, gebruikersnaam_of_email.Text);
                 }
                 await PopupNavigation.Instance.PopAsync();
             };

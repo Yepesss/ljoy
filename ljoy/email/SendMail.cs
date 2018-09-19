@@ -16,6 +16,7 @@ namespace ljoy.email
         public void EmailVerzenden(string titel, string tekst)
         {
             var message = new MimeMessage();
+            var attachment = new MimePart();
             message.From.Add(new MailboxAddress("L-Joy", "ljoydancefactoryapp@gmail.com"));
             message.To.Add(new MailboxAddress("L-Joy", "ljoydancefactoryapp@gmail.com"));
             message.Subject = titel;

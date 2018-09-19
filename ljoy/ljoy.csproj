@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="applicatie\Contact.cs" />
+    <Compile Remove="popups\EersteKeerAanmelden.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove=".DS_Store" />
