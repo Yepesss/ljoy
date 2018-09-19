@@ -12,20 +12,21 @@ namespace ljoy.popups
 	{
 		public afmelden (entiteiten.Les les)
 		{
+            Entry reden = new Entry { Placeholder = "Reden (optioneel)" };
+
             Button verzendknop = new Button { Text = "Meld af", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
             verzendknop.Clicked += (object sender, EventArgs e) =>
             {
-                email.SendMail mail = new email.SendMail();
-                mail.EmailVerzenden("Afmelding " + les.naam + " van " + les.dag, "Afmelding");
-                DisplayAlert("Gelukt!", "U heeft u afgemeld!", "Oké");
-                PopupNavigation.Instance.PopAsync();
+                    email.SendMail mail = new email.SendMail();
+                    mail.EmailVerzenden("Afmelding " + les.naam + " van " + les.dag, "Afmelding");
+                    DisplayAlert("Gelukt!", "U heeft u afgemeld!", "Oké");
+                    PopupNavigation.Instance.PopAsync();
             };
             Button terugknop = new Button { Text = "Terug", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White};
             terugknop.Clicked += (object sender, EventArgs e) =>
             {
                 PopupNavigation.Instance.PopAsync();
             };
-            Entry reden = new Entry { Placeholder = "Reden (optioneel)" };
 
             Content = new StackLayout {
                 Margin = new Thickness(10, 10, 10, 10),

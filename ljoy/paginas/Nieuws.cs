@@ -37,7 +37,7 @@ namespace ljoy.paginas
             nieuwsListView.ItemTapped += async (o, e) => {
                 var myList = (ListView)o;
                 var nieuwsSelectedItem = (myList.SelectedItem as NieuwsEntiteit);
-                await Navigation.PushAsync(new paginas.NieuwsInformatie(nieuwsSelectedItem));
+                await Navigation.PushAsync(new NieuwsInformatie(nieuwsSelectedItem));
                 myList.SelectedItem = null; // de-select the row
             };
 

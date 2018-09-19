@@ -50,9 +50,16 @@ namespace ljoy.adminpaginas
 
             opslaanButton.Clicked += async (object sender, EventArgs e) =>
             {
-                RestService restService = new RestService();
-                var response = await restService.gebruikerToevoegen(gebruikersnaamEntry.Text, emailEntry.Text, genereerWachtwoord());
-                await DisplayAlert("Gebruiker toevoegen", response, "Ok");
+                if (!gebruikersnaamEntry.Text.Equals("") || !emailEntry.Text.Equals(""))
+                {
+                    RestService restService = new RestService();
+                    var response = await restService.gebruikerToevoegen(gebruikersnaamEntry.Text, emailEntry.Text, genereerWachtwoord());
+                    await DisplayAlert("Gebruiker toevoegen", response, "Ok");
+                }
+                else
+                {
+                    await DisplayAlert("Gebruiker toevoegen", "Gebruikersnaam of email is niet ingevuld", "Ok");
+                }
             };
         }
 
