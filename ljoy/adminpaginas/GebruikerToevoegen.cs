@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -50,6 +50,8 @@ namespace ljoy.adminpaginas
 
             opslaanButton.Clicked += async (object sender, EventArgs e) =>
             {
+                if (!gebruikersnaamEntry.Text.Equals("") || !emailEntry.Text.Equals(""))
+                {
                 RestService restService = new RestService();
                 var wachtwoord = genereerWachtwoord();
                 var response = await restService.gebruikerToevoegen(gebruikersnaamEntry.Text, emailEntry.Text, wachtwoord);
@@ -64,7 +66,12 @@ namespace ljoy.adminpaginas
                                          "Met vriendelijke groet," + "\r\n"  +
                                          "L-Joy Dancefactory", emailEntry.Text, gebruikersnaamEntry.Text);
                 }
-                await DisplayAlert("Gebruiker toevoegen", response, "Ok");
+                	await DisplayAlert("Gebruiker toevoegen", response, "Ok");
+                }
+                else
+                {
+                    await DisplayAlert("Gebruiker toevoegen", "Gebruikersnaam of email is niet ingevuld", "Ok");
+                }
             };
         }
 

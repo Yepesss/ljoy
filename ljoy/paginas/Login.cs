@@ -1,4 +1,4 @@
-﻿using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -63,46 +63,55 @@ namespace ljoy.paginas
             {
                 try
                 {
-                    popups.laadscherm scherm = new popups.laadscherm();
-                    await Navigation.PushPopupAsync(scherm);
-
-                    await Task.Run(() =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                    if (!gebruikersnaam.Text.Equals("") || !wachtwoord.Text.Equals(""))
                     {
+                        popups.laadscherm scherm = new popups.laadscherm();
+                        await Navigation.PushPopupAsync(scherm);
+
+                        await Task.Run(() =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                        {
                         //0 = gebruikersnaam niet gevonden
                         //1 = goed
                         //2 = wachtwoord fout
                         //3 = goed maar eerste keer ingelogd
                         RestService con = new RestService();
-                        result = con.Inloggen(gebruikersnaam.Text, wachtwoord.Text).Result;
-                    });
+                            result = con.Inloggen(gebruikersnaam.Text, wachtwoord.Text).Result;
+                        });
 
-                    if ("0".Equals(result))
-                    {
+                        if ("0".Equals(result))
+                        {
 
-                        await Navigation.RemovePopupPageAsync(scherm);
-                        await DisplayAlert("Oeps..", "Gebruikersnaam bestaat niet..", "Ok");
-                    }
-                    else if ("1".Equals(result))
-                    {
-                        if ("admin".Equals(gebruikersnaam.Text.ToLower()))
-                        {
-                            await Navigation.PushModalAsync(new NavigationPage(new applicatie.AdminStarter()));
-                        }
-                        else
-                        {
-                            helper.Settings.UsernameSettings = gebruikersnaam.Text;
-                            await Navigation.PushAsync(new applicatie.ApplicatieStarter());
                             await Navigation.RemovePopupPageAsync(scherm);
+                            await DisplayAlert("Oeps..", "Gebruikersnaam bestaat niet..", "Ok");
+                        }
+                        else if ("1".Equals(result))
+                        {
+                            if ("admin".Equals(gebruikersnaam.Text.ToLower()))
+                            {
+                                await Navigation.PushModalAsync(new NavigationPage(new applicatie.AdminStarter()));
+                            }
+                            else
+                            {
+                                helper.Settings.UsernameSettings = gebruikersnaam.Text;
+                                await Navigation.PushAsync(new applicatie.ApplicatieStarter());
+                                RestService con = new RestService();
+                                helper.Settings.IdSettings = await con.VerkrijgId(gebruikersnaam.Text);
+                                await Navigation.RemovePopupPageAsync(scherm);
+                            }
+                        }
+                        else if ("2".Equals(result))
+                        {
+                            await DisplayAlert("Oeps..", "Wachtwoord is fout..", "Ok");
+                        }
+                        else if ("3".Equals(result))
+                        {
+                            popups.wachtwoordVeranderen wachtwoordVeranderen = new popups.wachtwoordVeranderen(gebruikersnaam.Text);
+                            await Navigation.PushPopupAsync(wachtwoordVeranderen);
                         }
                     }
-                    else if ("2".Equals(result))
+                    else
                     {
-                        await DisplayAlert("Oeps..", "Wachtwoord is fout..", "Ok");
-                    }
-                    else if ("3".Equals(result))
-                    {
-                        popups.wachtwoordVeranderen wachtwoordVeranderen = new popups.wachtwoordVeranderen(gebruikersnaam.Text);
-                        await Navigation.PushPopupAsync(wachtwoordVeranderen);
+                        await DisplayAlert("Oeps..", "Gebruikersnaam of wachtwoord is niet ingevuld.", "Ok");
                     }
                 }
                 catch(Exception ex)

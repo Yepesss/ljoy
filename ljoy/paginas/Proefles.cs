@@ -6,7 +6,7 @@ using XLabs.Forms.Controls;
 
 namespace ljoy.paginas
 {
-    public class Inschrijf : ContentPage
+    public class Proefles : ContentPage
     {
 
         Entry voornaam;
@@ -17,21 +17,14 @@ namespace ljoy.paginas
         Entry woonplaats;
         Entry telefoonnummer;
         Entry emailadres;
-        Entry rekeningnummer;
-        Entry rekeninghouder;
         Label geboortedatum;
         Entry geboortedatum_dag;
         Entry geboortedatum_maand;
         Entry geboortedatum_jaar;
-        CheckBox machtiging;
-        CheckBox algemenevoorwaarden;
-        CheckBox nieuwsbrief;
-        CheckBox fotofilmmateriaal;
         Button btn1;
-        Button algemenevoorwaarden_link = new Button { Text = "Klik hier voor de algemene voorwaarden", BackgroundColor = Color.Transparent, TextColor = Color.Blue, FontAttributes = FontAttributes.Italic, HorizontalOptions = LayoutOptions.Center, FontSize = 12 };
 
 
-        public Inschrijf(entiteiten.Les les)
+        public Proefles(entiteiten.Les les)
         {
             Title = les.naam;
 
@@ -108,18 +101,6 @@ namespace ljoy.paginas
             emailadres.TextColor = Color.Black;
             emailadres.Placeholder = "Emailadres";
 
-            rekeningnummer = new Entry();
-            rekeningnummer.HorizontalTextAlignment = TextAlignment.Start;
-            rekeningnummer.PlaceholderColor = Color.Gray;
-            rekeningnummer.TextColor = Color.Black;
-            rekeningnummer.Placeholder = "Rekeningnummer (IBAN)";
-
-            rekeninghouder = new Entry();
-            rekeninghouder.HorizontalTextAlignment = TextAlignment.Start;
-            rekeninghouder.PlaceholderColor = Color.Gray;
-            rekeninghouder.TextColor = Color.Black;
-            rekeninghouder.Placeholder = "Naam rekeninghouder";
-
             geboortedatum = new Label();
             geboortedatum.Text = "Geboortedatum";
             geboortedatum.HorizontalOptions = LayoutOptions.Start;
@@ -128,40 +109,18 @@ namespace ljoy.paginas
             geboortedatum.TextColor = Color.Gray;
             geboortedatum.FontSize = 17.5;
 
-            machtiging = new CheckBox();
-            machtiging.DefaultText = "Hiermee machtig ik L-Joy Dancefactory om per kwartaal automatisch de contributie af te laten schrijven.";
-
-            algemenevoorwaarden = new CheckBox();
-            algemenevoorwaarden.DefaultText = "Hiermee verklaar ik akkoord te gaan met de Algemene Voorwaarden van L-Joy dancefactory. *";
-
-            nieuwsbrief = new CheckBox();
-            nieuwsbrief.DefaultText = "Ik wil de nieuwsbrief en info per email ontvangen";
-
-            fotofilmmateriaal = new CheckBox();
-            fotofilmmateriaal.DefaultText = "Ik geef toestemming voor het maken van foto en filmmateriaal.";
-
-            btn1 = new Button { Text = "Schrijf je in", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
+            btn1 = new Button { Text = "Meld je aan", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
             btn1.Clicked += (object sender, EventArgs e) =>
             {
-                if (voornaam.Text == null || achternaam.Text == null || straatnaam.Text == null || huisnummer.Text == null || geboortedatum_dag.Text == null || geboortedatum_maand.Text == null || geboortedatum_jaar.Text == null || postcode.Text == null || woonplaats.Text == null || telefoonnummer.Text == null ||emailadres.Text == null || rekeningnummer.Text == null || rekeninghouder.Text == null || "".Equals(voornaam.Text) || "".Equals(achternaam.Text) || "".Equals(straatnaam.Text) || "".Equals(huisnummer.Text) || "".Equals(geboortedatum_dag.Text) || "".Equals(geboortedatum_maand.Text) || "".Equals(geboortedatum_jaar.Text) || "".Equals(postcode.Text) || "".Equals(woonplaats.Text) || "".Equals(telefoonnummer.Text) || "".Equals(emailadres.Text) || "".Equals(rekeningnummer.Text) || "".Equals(rekeninghouder.Text))
+                if (voornaam.Text == null || achternaam.Text == null || straatnaam.Text == null || huisnummer.Text == null || geboortedatum_dag.Text == null || geboortedatum_maand.Text == null || geboortedatum_jaar.Text == null || postcode.Text == null || woonplaats.Text == null || telefoonnummer.Text == null ||emailadres.Text == null || "".Equals(voornaam.Text) || "".Equals(achternaam.Text) || "".Equals(straatnaam.Text) || "".Equals(huisnummer.Text) || "".Equals(geboortedatum_dag.Text) || "".Equals(geboortedatum_maand.Text) || "".Equals(geboortedatum_jaar.Text) || "".Equals(postcode.Text) || "".Equals(woonplaats.Text) || "".Equals(telefoonnummer.Text) || "".Equals(emailadres.Text))
                 {
                     DisplayAlert("Oeps!", "Vul a.u.b. alle velden in.", "Oké");
-                }
-                else if (!algemenevoorwaarden.Checked)
-                {
-                    DisplayAlert("Oeps!", "Om in te schrijven moet u akkoord gaan met de algemene voorwaarden.", "Oké");
                 }
                 else
                 {
 
                 }
             };
-
-            algemenevoorwaarden_link.Clicked += (object sender, EventArgs e) =>
-            {
-                Navigation.PushPopupAsync(new popups.algemenevoorwaarden());
-            };
-
 
             Grid sGrid = new Grid();
             sGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(240) });
@@ -246,60 +205,8 @@ namespace ljoy.paginas
                             }
                         }, HasShadow = true,
                     },
-                    new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
-                            Children = {
-                                new Label { Text = "Bankgegevens", HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold },
-                                new BoxView() { Color = Color.White, HeightRequest = 1  },
-                                new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
-                                    Children =  {
-                                        rekeningnummer
-                                        }
-                                    }, HasShadow = true,
-                                },
-                                new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
-                                    Children =  {
-                                        rekeninghouder
-                                        }
-                                    }, HasShadow = true,
-                                }
-                            }
-                        }, HasShadow = true,
-                    },
-                    new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), Content = new StackLayout{
-                            Children = {
-                                new Label { Text = "Toestemmingen", HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold },
-                                new BoxView() { Color = Color.White, HeightRequest = 1  },
-                                new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
-                                    Children = {
-                                        machtiging
-                                    }
-                                }, HasShadow = true,
-                                },
-                                new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
-                                    Children =  {
-                                        algemenevoorwaarden
-                                        }
-                                    }, HasShadow = true,
-                                },
-                                new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
-                                    Children =  {
-                                        nieuwsbrief
-                                        }
-                                    }, HasShadow = true,
-                                },
-                                new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
-                                    Children =  {
-                                        fotofilmmateriaal
-                                        }
-                                    }, HasShadow = true,
-                                },
-                                new Label { Text = "* verplichte velden	", TextColor = Color.White}
-                            }
-                        }, HasShadow = true,
-                    },
-                    algemenevoorwaarden_link,
                     btn1,
-                    new Frame { Padding = 3.75 }
+                    new Frame { Padding = 5 }
 
                     }
                 }

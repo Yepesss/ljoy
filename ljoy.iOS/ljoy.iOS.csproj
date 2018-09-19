@@ -96,7 +96,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -163,11 +162,14 @@
     <PackageReference Include="Xamarin.Forms.Maps">
       <Version>3.2.0.839982</Version>
     </PackageReference>
+    <PackageReference Include="XLabs.Forms">
+      <Version>2.3.0-pre05</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\ljoy\ljoy.csproj">
-      <Project>{DA68AD27-7D38-4B91-A40D-9FC0C96AE778}</Project>
+      <Project>{6A29D58B-9EB5-4047-BC7C-4E18FF0A8376}</Project>
       <Name>ljoy</Name>
     </ProjectReference>
   </ItemGroup>

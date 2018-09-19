@@ -47,9 +47,16 @@ namespace ljoy.adminpaginas
 
             opslaanButton.Clicked += async (object sender, EventArgs e) =>
             {
-                RestService restService = new RestService();
-                var response = await restService.nieuwsToevoegen(titelEntry.Text, tekstEntry.Text);
-                await DisplayAlert("Nieuws toevoegen", response, "Ok");
+                if (!titelEntry.Text.Equals("") || !tekstEntry.Text.Equals(""))
+                {
+                    RestService restService = new RestService();
+                    var response = await restService.nieuwsToevoegen(titelEntry.Text, tekstEntry.Text);
+                    await DisplayAlert("Nieuws toevoegen", response, "Ok");
+                }
+                else
+                {
+                    await DisplayAlert("Nieuws toevoegen", "Titel of tekst is niet ingevuld.", "Ok");
+                }
             };
         }
     }

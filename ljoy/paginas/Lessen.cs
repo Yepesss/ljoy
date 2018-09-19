@@ -25,6 +25,8 @@ namespace ljoy.paginas
             try
             {
                 result = con.VerkrijgLessen().Result;
+                DisplayAlert("Gelukt!", result.ToString(), "Ok");
+
             }
             catch (AggregateException er)
             {
@@ -121,7 +123,7 @@ namespace ljoy.paginas
             lstView.ItemTapped += async (o, e) => {
                 var myList = (ListView)o;
                 var les = (myList.SelectedItem as Les);
-                await Navigation.PushAsync(new paginas.LesInformatie(les));
+                await Navigation.PushAsync(new LesInformatie(les));
                 myList.SelectedItem = null; // de-select the row
             };
 

@@ -12,7 +12,7 @@ namespace ljoy
             CrossFirebasePushNotification.Current.Subscribe("nieuws");
 
             if (helper.Settings.UsernameSettings != null && !"".Equals(helper.Settings.UsernameSettings)) {
-                MainPage = new applicatie.ApplicatieStarter();
+                MainPage = new NavigationPage(new applicatie.ApplicatieStarter());
             } else {
                 MainPage = new NavigationPage(new paginas.Login());
             }
@@ -39,7 +39,7 @@ namespace ljoy
 
         protected override void OnStart()
         {
-            
+
         }
 
         protected override void OnSleep()

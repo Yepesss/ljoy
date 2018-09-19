@@ -36,17 +36,27 @@ namespace ljoy
 
         public async Task<List<Les>> VerkrijgLessen()
         {
-            var response = await client.GetAsync("http://ljoy.dx.am/lessen.php").ConfigureAwait(false);
-            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            Console.WriteLine(content);
-            return JsonConvert.DeserializeObject<List<Les>>(content);
+            var uri = new Uri("http://ljoy.dx.am/lessen.php");
+            var json = "{\"gebruikerid\":\"" + helper.Settings.IdSettings + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            var result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<List<Les>>(result);
+        }
+
+        public async Task<string> VerkrijgId(string gebruikersnaam)
+        {
+            var uri = new Uri("http://ljoy.dx.am/id.php");
+            var json = "{\"gebruikersnaam\":\"" + gebruikersnaam + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
 
         public async Task<List<NieuwsEntiteit>> VerkrijgNieuws()
         {
             var response = await client.GetAsync("http://ljoy.dx.am/nieuws.php").ConfigureAwait(false);
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            Console.WriteLine(content);
             return JsonConvert.DeserializeObject<List<NieuwsEntiteit>>(content);
         }
 

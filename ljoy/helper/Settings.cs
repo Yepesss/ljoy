@@ -37,5 +37,23 @@ namespace ljoy.helper
         public static void RemoveUserName(){
             AppSettings.Remove(UsernameKey);
         }
+
+    private const string IdKey = "id_key";
+        public static string IdSettings
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(IdKey, SettingsDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(IdKey, value);
+            }
+        }
+
+        public static void RemoveId()
+        {
+            AppSettings.Remove(IdKey);
+        }
     }
 }

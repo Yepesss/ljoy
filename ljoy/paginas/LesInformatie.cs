@@ -26,14 +26,35 @@ namespace ljoy.paginas
             char[] letters = wanneer.ToCharArray();
             letters[0] = char.ToUpper(letters[0]);
             wanneer = new string(letters);
-            int ingeschreven = 1;
-            int ingelogd = 1;
-            Button afmeld_knop = afmeld_knop = new Button { Text = "Meld af", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
-            Button inschrijf_knop = new Button();
+            int ingeschreven = les.ingeschreven;
+            int ingelogd;
+            if (helper.Settings.UsernameSettings == "")
+            {
+                ingelogd = 0;
+
+            }
+            else
+            {
+                ingelogd = 1;
+
+            }
+            Button afmeld_knop = new Button { Text = "Meld af", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
+            Button inschrijf_knop = new Button { Text = "Schrijf u in voor deze les", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
+            Button proefles_knop = new Button { Text = "Meld je aan voor een proefles", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
 
             afmeld_knop.Clicked += (object sender, EventArgs e) =>
             {
                 Navigation.PushPopupAsync(new popups.afmelden(les));
+            };
+
+            inschrijf_knop.Clicked += (object sender, EventArgs e) =>
+            {
+                Navigation.PushAsync(new Inschrijf(les));
+            };
+
+            proefles_knop.Clicked += (object sender, EventArgs e) =>
+            {
+               Navigation.PushAsync(new Proefles(les));
             };
 
             ScrollView scrollView_niet_ingelogd = new ScrollView
@@ -69,6 +90,8 @@ namespace ljoy.paginas
                         },
                         new Label { Text = "", HorizontalTextAlignment = TextAlignment.Center, FontAttributes = FontAttributes.Italic, FontSize = 6},
                         new BoxView() { Color = Color.Black, HeightRequest = 1  },
+                        new Label { Text = "Benieuwd naar deze les?", HorizontalTextAlignment = TextAlignment.Center, FontAttributes = FontAttributes.Italic, FontSize = 14},
+                        proefles_knop,
                         new Label { Text = "Log in om in te schrijven.\nGeen account? Neem hiervoor contact op via de contact pagina.", HorizontalTextAlignment = TextAlignment.Center, FontAttributes = FontAttributes.Italic, FontSize = 14},
 
                     }
@@ -109,10 +132,9 @@ namespace ljoy.paginas
                         new Label { Text = "", HorizontalTextAlignment = TextAlignment.Center, FontAttributes = FontAttributes.Italic, FontSize = 6},
                         new BoxView() { Color = Color.Black, HeightRequest = 1  },
                         new Label { Text = "Benieuwd naar deze les?", HorizontalTextAlignment = TextAlignment.Center, FontAttributes = FontAttributes.Italic, FontSize = 14},
-                        new Button { Text = "Schrijf u in voor een proefles", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White},
+                        proefles_knop,
                         new Label { Text = "Wilt u zich inschrijven?", HorizontalTextAlignment = TextAlignment.Center, FontAttributes = FontAttributes.Italic, FontSize = 14},
-                        new Button { Text = "Schrijf u in voor deze les", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White}
-
+                        inschrijf_knop
                     }
                 }
             };
