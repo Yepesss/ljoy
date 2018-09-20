@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
 using Foundation;
 using Plugin.FirebasePushNotification;
 using UIKit;
@@ -23,6 +20,7 @@ namespace ljoy.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.FormsMaps.Init();

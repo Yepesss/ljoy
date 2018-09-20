@@ -96,7 +96,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -139,6 +138,9 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -147,17 +149,8 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Plugin.FirebasePushNotification">
-      <Version>2.3.5</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>3.2.0.637442-pre1</Version>
-    </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms">
-      <Version>3.1.0.697729</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.1.4.168</Version>
@@ -165,8 +158,11 @@
     <PackageReference Include="Plugin.FirebasePushNotification">
       <Version>2.3.5</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>3.2.0.839982</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>3.2.0.809874-pre3</Version>
+      <Version>3.2.0.839982</Version>
     </PackageReference>
     <PackageReference Include="XLabs.Forms">
       <Version>2.3.0-pre05</Version>
@@ -175,7 +171,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\ljoy\ljoy.csproj">
-      <Project>{DA68AD27-7D38-4B91-A40D-9FC0C96AE778}</Project>
+      <Project>{6A29D58B-9EB5-4047-BC7C-4E18FF0A8376}</Project>
       <Name>ljoy</Name>
     </ProjectReference>
   </ItemGroup>
@@ -192,6 +188,7 @@
     <BundleResource Include="Resources\website.png" />
     <BundleResource Include="Resources\youtube.png" />
     <BundleResource Include="GoogleService-Info.plist" />
+    <BundleResource Include="Resources\mijnaccount.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\box1.png" />

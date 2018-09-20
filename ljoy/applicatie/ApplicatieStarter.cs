@@ -10,7 +10,6 @@ namespace ljoy.applicatie
         {
             NavigationPage.SetHasNavigationBar(this, false);
 
-
             //Geeft de tabbar een kleur en de tekst en plaatjes erin
             BarBackgroundColor = Color.FromHex("#FF4081");
             BarTextColor = Color.White;
@@ -34,16 +33,24 @@ namespace ljoy.applicatie
             var contactPagina = new paginas.Contact();
             contactPagina.Title = "Contact";
 
+            //Maak de mijn account pagina aan
+            var mijnAccountPagina = new paginas.MijnAccount();
+            mijnAccountPagina.Title = "Mijn account";
+
             if (Device.RuntimePlatform == Device.iOS)
             {
                 nieuwsPagina.Icon = "nieuws.png";
                 lesPagina.Icon = "inschrijven.png";
                 contactPagina.Icon = "contact.png";
+                mijnAccountPagina.Icon = "mijnaccount.png";
             }
 
             this.Children.Add(nieuwsPagina);
             this.Children.Add(lesPagina);
             this.Children.Add(contactPagina);
+            if (helper.Settings.UsernameSettings != null && !"".Equals(helper.Settings.UsernameSettings)){
+                this.Children.Add(mijnAccountPagina);
+            }
         }
     }
 }

@@ -70,10 +70,20 @@
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Can we use your location?</string>
+	<string>We maken gebruik van uw locatie</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We use your location</string>
+	<string>We maken gebruik van uw locatie</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fb</string>
+		<string>fbapi</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+		<string>fb-messenger-api</string>
+	</array>
+	<key>XSLaunchImageAssets</key>
+	<string>Assets.xcassets/LaunchImage.launchimage</string>
 </dict>
 </plist>

@@ -1,4 +1,4 @@
-﻿using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -34,7 +34,7 @@ namespace ljoy.paginas
             passwordIcon.Source = "password_icon.png";
             passwordIcon.HorizontalOptions = LayoutOptions.Center;
             passwordIcon.VerticalOptions = LayoutOptions.Center;
-            passwordIcon.Aspect = Aspect.AspectFit;
+            accountIcon.Aspect = Aspect.AspectFit;
 
 
 
@@ -92,8 +92,8 @@ namespace ljoy.paginas
                             }
                             else
                             {
-                                await Navigation.PushAsync(new applicatie.ApplicatieStarter());
                                 helper.Settings.UsernameSettings = gebruikersnaam.Text;
+                                await Navigation.PushAsync(new applicatie.ApplicatieStarter());
                                 RestService con = new RestService();
                                 helper.Settings.IdSettings = await con.VerkrijgId(gebruikersnaam.Text);
                                 await Navigation.RemovePopupPageAsync(scherm);
