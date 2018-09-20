@@ -10,14 +10,18 @@ using Plugin.FirebasePushNotification;
 
 namespace ljoy.Droid
 {
-    [Activity(Label = "ljoy", Icon = "@drawable/Icon180", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "ljoy", Icon = "@drawable/Icon180", Theme = "@style/splashscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
+            System.Threading.Thread.Sleep(2000);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            base.Window.RequestFeature(WindowFeatures.ActionBar);
+            // Name of the MainActivity theme you had there before.
+            // Or you can use global::Android.Resource.Style.ThemeHoloLight
+            base.SetTheme(Resource.Style.MainTheme);
             base.OnCreate(bundle);
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             if (CheckSelfPermission("android.permission.ACCESS_FINE_LOCATION") == Permission.Granted)

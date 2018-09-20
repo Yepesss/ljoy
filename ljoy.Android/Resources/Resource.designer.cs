@@ -4188,26 +4188,26 @@ namespace ljoy.Droid
 			// aapt resource value: 0x7f020055
 			public const int avd_hide_password = 2130837589;
 			
-			// aapt resource value: 0x7f020159
-			public const int avd_hide_password_1 = 2130837849;
-			
 			// aapt resource value: 0x7f02015a
-			public const int avd_hide_password_2 = 2130837850;
+			public const int avd_hide_password_1 = 2130837850;
 			
 			// aapt resource value: 0x7f02015b
-			public const int avd_hide_password_3 = 2130837851;
+			public const int avd_hide_password_2 = 2130837851;
+			
+			// aapt resource value: 0x7f02015c
+			public const int avd_hide_password_3 = 2130837852;
 			
 			// aapt resource value: 0x7f020056
 			public const int avd_show_password = 2130837590;
 			
-			// aapt resource value: 0x7f02015c
-			public const int avd_show_password_1 = 2130837852;
-			
 			// aapt resource value: 0x7f02015d
-			public const int avd_show_password_2 = 2130837853;
+			public const int avd_show_password_1 = 2130837853;
 			
 			// aapt resource value: 0x7f02015e
-			public const int avd_show_password_3 = 2130837854;
+			public const int avd_show_password_2 = 2130837854;
+			
+			// aapt resource value: 0x7f02015f
+			public const int avd_show_password_3 = 2130837855;
 			
 			// aapt resource value: 0x7f020057
 			public const int bel = 2130837591;
@@ -4944,11 +4944,11 @@ namespace ljoy.Droid
 			// aapt resource value: 0x7f02014b
 			public const int notification_icon_background = 2130837835;
 			
-			// aapt resource value: 0x7f020157
-			public const int notification_template_icon_bg = 2130837847;
-			
 			// aapt resource value: 0x7f020158
-			public const int notification_template_icon_low_bg = 2130837848;
+			public const int notification_template_icon_bg = 2130837848;
+			
+			// aapt resource value: 0x7f020159
+			public const int notification_template_icon_low_bg = 2130837849;
 			
 			// aapt resource value: 0x7f02014c
 			public const int notification_tile_bg = 2130837836;
@@ -4966,22 +4966,25 @@ namespace ljoy.Droid
 			public const int route = 2130837840;
 			
 			// aapt resource value: 0x7f020151
-			public const int telefoon = 2130837841;
+			public const int splashscreen = 2130837841;
 			
 			// aapt resource value: 0x7f020152
-			public const int test = 2130837842;
+			public const int telefoon = 2130837842;
 			
 			// aapt resource value: 0x7f020153
-			public const int tooltip_frame_dark = 2130837843;
+			public const int test = 2130837843;
 			
 			// aapt resource value: 0x7f020154
-			public const int tooltip_frame_light = 2130837844;
+			public const int tooltip_frame_dark = 2130837844;
 			
 			// aapt resource value: 0x7f020155
-			public const int website = 2130837845;
+			public const int tooltip_frame_light = 2130837845;
 			
 			// aapt resource value: 0x7f020156
-			public const int youtube = 2130837846;
+			public const int website = 2130837846;
+			
+			// aapt resource value: 0x7f020157
+			public const int youtube = 2130837847;
 			
 			static Drawable()
 			{
@@ -7500,6 +7503,9 @@ namespace ljoy.Droid
 			
 			// aapt resource value: 0x7f0b000e
 			public const int Widget_MediaRouter_MediaRouteButton = 2131427342;
+			
+			// aapt resource value: 0x7f0b0196
+			public const int splashscreen = 2131427734;
 			
 			static Style()
 			{
