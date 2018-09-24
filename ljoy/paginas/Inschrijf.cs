@@ -153,7 +153,32 @@ namespace ljoy.paginas
                 }
                 else
                 {
+                    email.SendMail email = new email.SendMail();
+                    //Email naar de gebruiker
+                    email.EmailVerzenden("U heeft zich ingeschreven!", 
+                                         "U heeft zich succesvol ingeschreven voor " + les.naam + " op " + les.dag + "." + "\r\n" +
+                                         "Wij verwachten u om " + les.tijdstip + " in de les." + "\r\n" + "\r\n" +
+                                         "Met vriendelijke groet," + "\r\n" +
+                                         "L-Joy Dancefactory", 
+                                         emailadres.Text, voornaam.Text);
 
+                    //Email naar l-joy
+                    email.EmailVerzenden("Inschrijving", 
+                                         "Voornaam: " + voornaam.Text + "\r\n" +
+                                         "Achternaam: " + achternaam.Text + "\r\n" +
+                                         "Straatnaam: " + straatnaam.Text + "\r\n" +
+                                         "Huisnummer: " + huisnummer.Text + "\r\n" +
+                                         "Geboortedatum: " + geboortedatum_dag.Text + " - " + geboortedatum_maand.Text + " - " + geboortedatum_jaar + "\r\n" +
+                                         "Postcode: " + postcode.Text + "\r\n" +
+                                         "Woonplaats: " + woonplaats.Text + "\r\n" +
+                                         "Telefoonnummer: " + telefoonnummer.Text + "\r\n" +
+                                         "Email: " + emailadres.Text + "\r\n" +
+                                         "Rekeningnummer: " + rekeningnummer.Text + "\r\n" +
+                                         "Rekeninghouder: " + rekeninghouder.Text + "\r\n" +
+                                         "Les: " + les.naam + "\r\n" +
+                                         "Dag: " + les.dag + "\r\n" +
+                                         "Tijdstip: " + les.tijdstip + "\r\n" +
+                                         "Docent: " + les.docent);
                 }
             };
 
@@ -287,7 +312,7 @@ namespace ljoy.paginas
                                         }
                                     }, HasShadow = true,
                                 },
-                                new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
+                                    new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
                                     Children =  {
                                         fotofilmmateriaal
                                         }
