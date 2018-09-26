@@ -37,7 +37,7 @@ namespace ljoy.paginas
                 lessen.Add(les);
             }
 
-            var lstView = new ListView();
+            ListView lstView = new ListView();
             grouped = new ObservableCollection<groupedLes>();
             var maandagGroup = new groupedLes { dag = "Maandag" };
             var dinsdagGroup = new groupedLes { dag = "Dinsdag" };

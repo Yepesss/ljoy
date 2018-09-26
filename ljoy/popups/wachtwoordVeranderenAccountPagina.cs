@@ -8,10 +8,11 @@ using Xamarin.Forms;
 
 namespace ljoy.popups
 {
-	public class wachtwoordVeranderen : PopupPage
+	public class wachtwoordVeranderenAccountPagina : PopupPage
 	{
-        public wachtwoordVeranderen (string gebruikersnaam)
+        public wachtwoordVeranderenAccountPagina ()
 		{
+            Entry wachtwoordOud = new Entry { Placeholder = "Oud wachtwoord" };
             Entry wachtwoordNieuw = new Entry { Placeholder = "Nieuw wachtwoord" };
             Entry wachtwoordOpnieuw = new Entry { Placeholder = "Nieuw wachtwoord (opnieuw)" };
 
@@ -20,18 +21,24 @@ namespace ljoy.popups
             {
                 if (wachtwoordNieuw.Text.Equals(wachtwoordOpnieuw.Text))
                 {
-                    helper.Settings.UsernameSettings = gebruikersnaam;
                     RestService restService = new RestService();
-                    var response = await restService.WachtwoordVeranderenEnActiveren(gebruikersnaam, wachtwoordNieuw.Text);
-                    await Navigation.PushAsync(new applicatie.ApplicatieStarter());
-                    await PopupNavigation.Instance.PopAsync();
-                    helper.Settings.UsernameSettings = gebruikersnaam;
-                    RestService con = new RestService();
-                    helper.Settings.IdSettings = await con.VerkrijgId(gebruikersnaam);
+                    var response = await restService.WachtwoordVeranderenAccountPagina(helper.Settings.UsernameSettings, wachtwoordNieuw.Text, wachtwoordOud.Text);
+                    if ("0".Equals(response))
+                    {
+                        await DisplayAlert("Gelukt", "Uw wachtwoord is veranderd!", "Ok");
+                        await PopupNavigation.Instance.PopAsync();
+                    }else if ("1".Equals(response))
+                    {
+                        await DisplayAlert("Oeps..", "Uw oude wachtwoord is niet juist.", "Ok");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Oeps..", response, "Ok");
+                    }
                 }
                 else
                 {
-                    await DisplayAlert("Oeps..", "Uw wachtwoorden komen niet overeen", "Ok");
+                    await DisplayAlert("Oeps..", "Uw nieuwe wachtwoorden komen niet overeen", "Ok");
                 }
             };
             Button terugknop = new Button { Text = "Terug", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White};
@@ -50,7 +57,7 @@ namespace ljoy.popups
                             {
                                 new Label { Text = "Wachtwoord veranderen", TextColor = Color.Black, HorizontalTextAlignment = TextAlignment.Center, FontSize = 20},
                                 new BoxView() { Color = Color.Black, HeightRequest = 1  },
-
+                                wachtwoordOud,
                                 wachtwoordNieuw,
                                 wachtwoordOpnieuw,
                                 verzendknop,

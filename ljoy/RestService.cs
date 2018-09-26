@@ -31,7 +31,6 @@ namespace ljoy
             HttpResponseMessage response = null;
             response = await client.PostAsync(uri, content).ConfigureAwait(false);
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
         }
 
         public async Task<List<Les>> VerkrijgLessen()
@@ -42,6 +41,16 @@ namespace ljoy
             var response = await client.PostAsync(uri, content).ConfigureAwait(false);
             var result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return JsonConvert.DeserializeObject<List<Les>>(result);
+        }
+
+        public async Task<List<LesAccountPagina>> VerkrijgLessenAccountPagina()
+        {
+            var uri = new Uri("http://ljoy.dx.am/lessenaccountpagina.php");
+            var json = "{\"gebruikerid\":\"" + helper.Settings.IdSettings + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            var result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<List<LesAccountPagina>>(result);
         }
 
         public async Task<string> VerkrijgId(string gebruikersnaam)
@@ -113,6 +122,17 @@ namespace ljoy
         {
             var uri = new Uri("http://ljoy.dx.am/wachtwoordveranderenenactiveren.php");
             var json = "{\"gebruikersnaam_of_email\":\"" + gebruikersnaam_of_email + "\",\"wachtwoord\":\"" + wachtwoord + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        }
+
+        public async Task<string> WachtwoordVeranderenAccountPagina(string gebruikersnaam, string wachtwoord_nieuw, string wachtwoord_oud)
+        {
+            var uri = new Uri("http://ljoy.dx.am/wachtwoordveranderenaccountpagina.php");
+            var json = "{\"gebruikersnaam\":\"" + gebruikersnaam + "\",\"wachtwoordnieuw\":\"" + wachtwoord_nieuw + "\",\"wachtwoordoud\":\"" + wachtwoord_oud +"\"}";
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = null;

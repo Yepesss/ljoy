@@ -128,17 +128,34 @@ namespace ljoy.paginas
             geboortedatum.TextColor = Color.Gray;
             geboortedatum.FontSize = 17.5;
 
-            machtiging = new CheckBox();
-            machtiging.DefaultText = "Hiermee machtig ik L-Joy Dancefactory om per kwartaal automatisch de contributie af te laten schrijven.";
+            controls.CheckBox machtiging_checkbox = new controls.CheckBox();
+            machtiging_checkbox.IsChecked = false;
+            machtiging_checkbox.CheckedBackgroundImageSource = "checkbox_background";
+            machtiging_checkbox.CheckmarkImageSource = "checkbox_check";
+            machtiging_checkbox.BorderImageSource = "checkbox_border";
+            machtiging_checkbox.Title = "Hiermee machtig ik L-Joy Dancefactory om per kwartaal automatisch de contributie af te laten schrijven.";
 
-            algemenevoorwaarden = new CheckBox();
-            algemenevoorwaarden.DefaultText = "Hiermee verklaar ik akkoord te gaan met de Algemene Voorwaarden van L-Joy dancefactory. *";
 
-            nieuwsbrief = new CheckBox();
-            nieuwsbrief.DefaultText = "Ik wil de nieuwsbrief en info per email ontvangen";
+            controls.CheckBox algemenevoorwaarden_checkbox = new controls.CheckBox();
+            algemenevoorwaarden_checkbox.IsChecked = false;
+            algemenevoorwaarden_checkbox.CheckedBackgroundImageSource = "checkbox_background";
+            algemenevoorwaarden_checkbox.CheckmarkImageSource = "checkbox_check";
+            algemenevoorwaarden_checkbox.BorderImageSource = "checkbox_border";
+            algemenevoorwaarden_checkbox.Title = "Hiermee verklaar ik akkoord te gaan met de Algemene Voorwaarden van L-Joy dancefactory. *";
 
-            fotofilmmateriaal = new CheckBox();
-            fotofilmmateriaal.DefaultText = "Ik geef toestemming voor het maken van foto en filmmateriaal.";
+            controls.CheckBox nieuwsbrief_checkbox = new controls.CheckBox();
+            nieuwsbrief_checkbox.IsChecked = false;
+            nieuwsbrief_checkbox.CheckedBackgroundImageSource = "checkbox_background";
+            nieuwsbrief_checkbox.CheckmarkImageSource = "checkbox_check";
+            nieuwsbrief_checkbox.BorderImageSource = "checkbox_border";
+            nieuwsbrief_checkbox.Title = "Ik wil de nieuwsbrief en info per email ontvangen.                                               ";
+
+            controls.CheckBox fotofilmmateriaal_checkbox = new controls.CheckBox();
+            fotofilmmateriaal_checkbox.IsChecked = false;
+            fotofilmmateriaal_checkbox.CheckedBackgroundImageSource = "checkbox_background";
+            fotofilmmateriaal_checkbox.CheckmarkImageSource = "checkbox_check";
+            fotofilmmateriaal_checkbox.BorderImageSource = "checkbox_border";
+            fotofilmmateriaal_checkbox.Title = "Ik geef toestemming voor het maken van foto en filmmateriaal.                              ";
 
             btn1 = new Button { Text = "Schrijf je in", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
             btn1.Clicked += (object sender, EventArgs e) =>
@@ -147,7 +164,7 @@ namespace ljoy.paginas
                 {
                     DisplayAlert("Oeps!", "Vul a.u.b. alle velden in.", "Oké");
                 }
-                else if (!algemenevoorwaarden.Checked)
+                else if (!algemenevoorwaarden_checkbox.IsChecked)
                 {
                     DisplayAlert("Oeps!", "Om in te schrijven moet u akkoord gaan met de algemene voorwaarden.", "Oké");
                 }
@@ -271,25 +288,25 @@ namespace ljoy.paginas
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },
                                 new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
                                     Children = {
-                                        machtiging
+                                        machtiging_checkbox
                                     }
                                 }, HasShadow = true,
                                 },
                                 new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
                                     Children =  {
-                                        algemenevoorwaarden
+                                        algemenevoorwaarden_checkbox
                                         }
                                     }, HasShadow = true,
                                 },
                                 new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
                                     Children =  {
-                                        nieuwsbrief
+                                        nieuwsbrief_checkbox
                                         }
                                     }, HasShadow = true,
                                 },
                                 new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.White, Content = new StackLayout{
                                     Children =  {
-                                        fotofilmmateriaal
+                                        fotofilmmateriaal_checkbox
                                         }
                                     }, HasShadow = true,
                                 },

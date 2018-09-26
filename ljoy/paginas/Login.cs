@@ -37,7 +37,6 @@ namespace ljoy.paginas
             accountIcon.Aspect = Aspect.AspectFit;
 
 
-
             gebruikersnaam = new Entry();
             gebruikersnaam.HorizontalTextAlignment = TextAlignment.Start;
             gebruikersnaam.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -89,6 +88,7 @@ namespace ljoy.paginas
                             if ("admin".Equals(gebruikersnaam.Text.ToLower()))
                             {
                                 await Navigation.PushModalAsync(new NavigationPage(new applicatie.AdminStarter()));
+                                await Navigation.RemovePopupPageAsync(scherm);
                             }
                             else
                             {
@@ -102,6 +102,7 @@ namespace ljoy.paginas
                         else if ("2".Equals(result))
                         {
                             await DisplayAlert("Oeps..", "Wachtwoord is fout..", "Ok");
+                            await Navigation.RemovePopupPageAsync(scherm);
                         }
                         else if ("3".Equals(result))
                         {
@@ -147,9 +148,15 @@ namespace ljoy.paginas
             gast_knop.TextColor = Color.White;
             gast_knop.BackgroundColor = Color.FromHex("#FF4081");
             gast_knop.VerticalOptions = LayoutOptions.Center;
-            gast_knop.Clicked += (object sender, EventArgs e) =>
+            gast_knop.Clicked += async (object sender, EventArgs e) =>
             {
-                Navigation.PushAsync(new applicatie.ApplicatieStarter());
+                popups.laadscherm scherm = new popups.laadscherm();
+                await Navigation.PushPopupAsync(scherm);
+                await Navigation.PushAsync(new applicatie.ApplicatieStarter());
+                await Navigation.RemovePopupPageAsync(scherm);
+
+
+
             };
 
             Content = new StackLayout

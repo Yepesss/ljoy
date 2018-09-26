@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -16,16 +18,22 @@ namespace ljoy.popups
 
             Button verzendknop = new Button { Text = "Meld af", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
             string gebruikersnaam = helper.Settings.UsernameSettings;
-            verzendknop.Clicked += (object sender, EventArgs e) =>
+            verzendknop.Clicked += async (object sender, EventArgs e) =>
             {
-                email.SendMail mail = new email.SendMail();
-                mail.EmailVerzenden("Afmelding", 
-                                    "Afmelding van: " + gebruikersnaam + "\r\n" + 
-                                    "Voor de les: " + les.naam + " van " + les.dag + "\r\n" +
-                                    "Reden: " + reden.Text);
-                DisplayAlert("Gelukt!", "U heeft u afgemeld!", "Oké");
-                PopupNavigation.Instance.PopAsync();
+                laadscherm scherm = new laadscherm();
+                await Navigation.PushPopupAsync(scherm);
 
+                await Task.Run(() =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                {
+                    email.SendMail mail = new email.SendMail();
+                    mail.EmailVerzenden("Afmelding",
+                                        "Afmelding van: " + gebruikersnaam + "\r\n" +
+                                        "Voor de les: " + les.naam + " van " + les.dag + "\r\n" +
+                                        "Reden: " + reden.Text);
+                });
+                await Navigation.RemovePopupPageAsync(scherm);
+                await DisplayAlert("Gelukt!", "U heeft u afgemeld!", "Oké");
+                await PopupNavigation.Instance.PopAsync();
             };
             Button terugknop = new Button { Text = "Terug", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White};
             terugknop.Clicked += (object sender, EventArgs e) =>
