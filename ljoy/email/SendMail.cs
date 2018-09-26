@@ -1,8 +1,5 @@
 ﻿using MailKit.Net.Smtp;
 using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ljoy.email
 {
@@ -17,8 +14,8 @@ namespace ljoy.email
         {
             var message = new MimeMessage();
             var attachment = new MimePart();
-            message.From.Add(new MailboxAddress("L-Joy", "ljoydancefactoryapp@gmail.com"));
-            message.To.Add(new MailboxAddress("L-Joy", "ljoydancefactoryapp@gmail.com"));
+            message.From.Add(new MailboxAddress("L-Joy", "app@l-joy.nl"));
+            message.To.Add(new MailboxAddress("L-Joy", "app@l-joy.nl"));
             message.Subject = titel;
 
             message.Body = new TextPart("plain")
@@ -31,10 +28,10 @@ namespace ljoy.email
                 // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                client.Connect("smtp.gmail.com", 465, true);
+                client.Connect("smtp.strato.com", 465, true);
 
                 // Note: only needed if the SMTP server requires authentication
-                client.Authenticate("ljoydancefactoryapp@gmail.com", "ljoy1234");
+                client.Authenticate("app@l-joy.nl", "14-november-1995");
 
                 client.Send(message);
                 client.Disconnect(true);
@@ -44,7 +41,7 @@ namespace ljoy.email
         public void EmailVerzenden(string titel, string tekst, string email, string gebruikersnaam)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("L-Joy", "ljoydancefactoryapp@gmail.com"));
+            message.From.Add(new MailboxAddress("L-Joy", "app@l-joy.nl"));
             message.To.Add(new MailboxAddress(gebruikersnaam, email));
             message.Subject = titel;
 
@@ -58,10 +55,10 @@ namespace ljoy.email
                 // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                client.Connect("smtp.gmail.com", 465, true);
+                client.Connect("smtp.strato.com", 465, true);
 
                 // Note: only needed if the SMTP server requires authentication
-                client.Authenticate("ljoydancefactoryapp@gmail.com", "ljoy1234");
+                client.Authenticate("app@l-joy.nl", "14-november-1995");
 
                 client.Send(message);
                 client.Disconnect(true);
