@@ -10,8 +10,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -28,8 +26,6 @@
 	<string>com.ljoy.ljoy</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>ljoy</string>
 	<key>XSAppIconAssets</key>
@@ -75,15 +71,9 @@
 	<string>We maken gebruik van uw locatie</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fb</string>
-		<string>fbapi</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-		<string>fb-messenger-api</string>
-	</array>
-	<key>XSLaunchImageAssets</key>
-	<string>Assets.xcassets/LaunchImage.launchimage</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>
