@@ -10,7 +10,7 @@ using Plugin.FirebasePushNotification;
 
 namespace ljoy.Droid
 {
-    [Activity(Label = "ljoy", Icon = "@drawable/Icon180", Theme = "@style/splashscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "L-Joy", Icon = "@drawable/Icon180", Theme = "@style/splashscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
