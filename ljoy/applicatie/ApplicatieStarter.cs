@@ -14,6 +14,7 @@ namespace ljoy.applicatie
             BarBackgroundColor = Color.FromHex("#FF4081");
             BarTextColor = Color.White;
 
+
             //Maak de pagina's aan
             maakPaginas();
         }
@@ -40,7 +41,7 @@ namespace ljoy.applicatie
             if (Device.RuntimePlatform == Device.iOS)
             {
                 nieuwsPagina.Icon = "nieuws.png";
-                lesPagina.Icon = "inschrijven.png";
+                lesPagina.Icon = "lessen.png";
                 contactPagina.Icon = "contact.png";
                 mijnAccountPagina.Icon = "mijnaccount.png";
             }
