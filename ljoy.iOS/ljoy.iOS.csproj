@@ -93,6 +93,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ApplicatieStarterRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -176,18 +177,29 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\bel.png" />
-    <BundleResource Include="Resources\contact.png" />
     <BundleResource Include="Resources\fb.png" />
-    <BundleResource Include="Resources\inschrijven.png" />
     <BundleResource Include="Resources\instagram.png" />
     <BundleResource Include="Resources\logo.png" />
     <BundleResource Include="Resources\mail.png" />
-    <BundleResource Include="Resources\nieuws.png" />
     <BundleResource Include="Resources\route.png" />
     <BundleResource Include="Resources\website.png" />
     <BundleResource Include="Resources\youtube.png" />
     <BundleResource Include="GoogleService-Info.plist" />
-    <BundleResource Include="Resources\mijnaccount.png" />
+    <BundleResource Include="Resources\checkbox_background.png" />
+    <BundleResource Include="Resources\checkbox_border.png" />
+    <BundleResource Include="Resources\checkbox_check.png" />
+    <BundleResource Include="Resources\contact%402x.png" />
+    <BundleResource Include="Resources\contact%401x.png" />
+    <BundleResource Include="Resources\contact%403x.png" />
+    <BundleResource Include="Resources\lessen%403x.png" />
+    <BundleResource Include="Resources\lessen%402x.png" />
+    <BundleResource Include="Resources\lessen%401x.png" />
+    <BundleResource Include="Resources\mijnaccount%403x.png" />
+    <BundleResource Include="Resources\mijnaccount%402x.png" />
+    <BundleResource Include="Resources\mijnaccount%401x.png" />
+    <BundleResource Include="Resources\nieuws%403x.png" />
+    <BundleResource Include="Resources\nieuws%402x.png" />
+    <BundleResource Include="Resources\nieuws%401x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\box1.png" />

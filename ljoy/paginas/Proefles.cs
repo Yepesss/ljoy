@@ -235,9 +235,7 @@ namespace ljoy.paginas
                             }
                         }, HasShadow = true,
                     },
-                    btn1,
-                    new Frame { Padding = 5 }
-
+                    btn1
                     }
                 }
             };

@@ -20,7 +20,7 @@ namespace ljoy.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-
+            
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.FormsMaps.Init();
@@ -29,6 +29,8 @@ namespace ljoy.iOS
             FirebasePushNotificationManager.Initialize(options, true);
 
             return base.FinishedLaunching(app, options);
+
+
         }
 
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)

@@ -362,9 +362,7 @@ namespace ljoy.paginas
                         }, HasShadow = true,
                     },
                     algemenevoorwaarden_link,
-                    btn1,
-                    new Frame { Padding = 3.75 }
-
+                    btn1
                     }
                 }
             };

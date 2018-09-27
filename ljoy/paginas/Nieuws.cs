@@ -13,6 +13,8 @@ namespace ljoy.paginas
 
         public Nieuws()
         {
+            this.Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
+
             result = getNieuws();
 
             foreach (NieuwsEntiteit nieuwsEntiteit in result){
