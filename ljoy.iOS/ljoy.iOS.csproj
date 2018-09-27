@@ -141,6 +141,17 @@
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon88.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon172.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon196.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon48.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon55.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon64.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -200,6 +211,31 @@
     <BundleResource Include="Resources\nieuws%403x.png" />
     <BundleResource Include="Resources\nieuws%402x.png" />
     <BundleResource Include="Resources\nieuws%401x.png" />
+    <BundleResource Include="Resources\splashscreen.png" />
+    <BundleResource Include="Resources\Icon40.png" />
+    <BundleResource Include="Resources\Icon60.png" />
+    <BundleResource Include="Resources\Icon58.png" />
+    <BundleResource Include="Resources\Icon87.png" />
+    <BundleResource Include="Resources\Icon80.png" />
+    <BundleResource Include="Resources\Icon120.png" />
+    <BundleResource Include="Resources\Icon180.png" />
+    <BundleResource Include="Resources\Icon20.png" />
+    <BundleResource Include="Resources\Icon29.png" />
+    <BundleResource Include="Resources\Icon76.png" />
+    <BundleResource Include="Resources\Icon152.png" />
+    <BundleResource Include="Resources\Icon167.png" />
+    <BundleResource Include="Resources\Icon1024.png" />
+    <BundleResource Include="Resources\Icon512.png" />
+    <BundleResource Include="Resources\Icon256.png" />
+    <BundleResource Include="Resources\Icon128.png" />
+    <BundleResource Include="Resources\Icon88.png" />
+    <BundleResource Include="Resources\Icon172.png" />
+    <BundleResource Include="Resources\Icon196.png" />
+    <BundleResource Include="Resources\Icon48.png" />
+    <BundleResource Include="Resources\Icon55.png" />
+    <BundleResource Include="Resources\Icon16.png" />
+    <BundleResource Include="Resources\Icon32.png" />
+    <BundleResource Include="Resources\Icon64.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\box1.png" />
