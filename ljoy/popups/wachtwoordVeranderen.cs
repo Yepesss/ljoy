@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -20,18 +22,25 @@ namespace ljoy.popups
             {
                 if (wachtwoordNieuw.Text.Equals(wachtwoordOpnieuw.Text))
                 {
-                    helper.Settings.UsernameSettings = gebruikersnaam;
-                    RestService restService = new RestService();
-                    var response = await restService.WachtwoordVeranderenEnActiveren(gebruikersnaam, wachtwoordNieuw.Text);
+                    popups.laadscherm scherm = new popups.laadscherm();
+                    await Navigation.PushPopupAsync(scherm);
+                    await Task.Run(async () =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                    {
+                        helper.Settings.UsernameSettings = gebruikersnaam;
+                        RestService restService = new RestService();
+                        var response = await restService.WachtwoordVeranderenEnActiveren(gebruikersnaam, wachtwoordNieuw.Text);
+                        await PopupNavigation.Instance.PopAsync();
+                        helper.Settings.UsernameSettings = gebruikersnaam;
+                        RestService con = new RestService();
+                        helper.Settings.IdSettings = await con.VerkrijgId(gebruikersnaam);
+                    });
                     await Navigation.PushAsync(new applicatie.ApplicatieStarter());
-                    await PopupNavigation.Instance.PopAsync();
-                    helper.Settings.UsernameSettings = gebruikersnaam;
-                    RestService con = new RestService();
-                    helper.Settings.IdSettings = await con.VerkrijgId(gebruikersnaam);
+                    await Navigation.RemovePopupPageAsync(scherm);
+                    await DisplayAlert("Gelukt!", "Je wachtwoord is gewijzigd.", "Oké");
                 }
                 else
                 {
-                    await DisplayAlert("Oeps..", "Uw wachtwoorden komen niet overeen", "Ok");
+                    await DisplayAlert("Mislukt!", "De wachtwoorden die je hebt ingevuld komen niet overeen.", "Ok");
                 }
             };
             Button terugknop = new Button { Text = "Terug", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White};

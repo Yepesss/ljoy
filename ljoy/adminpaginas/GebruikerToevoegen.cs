@@ -125,7 +125,7 @@ namespace ljoy.adminpaginas
                         }
                     });
                     await Navigation.RemovePopupPageAsync(scherm);
-                    await DisplayAlert("Gelukt!", "Gebruiker aangemaakt!", "Oké");
+                    await DisplayAlert("Gelukt!", "Gebruiker aangemaakt!", "Ok");
                 }
                 else
                 {

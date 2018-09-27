@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -19,26 +21,40 @@ namespace ljoy.popups
             Button verzendknop = new Button { Text = "Wachtwoord veranderen", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
             verzendknop.Clicked += async (object sender, EventArgs e) =>
             {
-                if (wachtwoordNieuw.Text.Equals(wachtwoordOpnieuw.Text))
+                if (!"".Equals(wachtwoordOud.Text) || wachtwoordOud.Text == null || !"".Equals(wachtwoordNieuw.Text) || wachtwoordNieuw.Text == null || !"".Equals(wachtwoordOpnieuw.Text) || wachtwoordOpnieuw.Text == null)
                 {
-                    RestService restService = new RestService();
-                    var response = await restService.WachtwoordVeranderenAccountPagina(helper.Settings.UsernameSettings, wachtwoordNieuw.Text, wachtwoordOud.Text);
-                    if ("0".Equals(response))
+                    if (wachtwoordNieuw.Text.Equals(wachtwoordOpnieuw.Text))
                     {
-                        await DisplayAlert("Gelukt", "Uw wachtwoord is veranderd!", "Ok");
-                        await PopupNavigation.Instance.PopAsync();
-                    }else if ("1".Equals(response))
-                    {
-                        await DisplayAlert("Oeps..", "Uw oude wachtwoord is niet juist.", "Ok");
+                        popups.laadscherm scherm = new popups.laadscherm();
+                        await Navigation.PushPopupAsync(scherm);
+                        await Task.Run(async () =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                        {
+                            RestService restService = new RestService();
+                            var response = await restService.WachtwoordVeranderenAccountPagina(helper.Settings.UsernameSettings, wachtwoordNieuw.Text, wachtwoordOud.Text);
+                            if ("0".Equals(response))
+                            {
+                                await PopupNavigation.Instance.PopAsync();
+                            }
+                            else if ("1".Equals(response))
+                            {
+                                await DisplayAlert("Mislukt!", "Uw oude wachtwoord is niet juist.", "Ok");
+                            }
+                            else
+                            {
+                                await DisplayAlert("Mislukt!", "Er is iets fout gegaan, probeer het nog eens.", "Ok");
+                            }
+                        });
+                        await Navigation.RemovePopupPageAsync(scherm);
+                        await DisplayAlert("Gelukt!", "Je wachtwoord is gewijzigd.", "Ok");
                     }
                     else
                     {
-                        await DisplayAlert("Oeps..", response, "Ok");
+                        await DisplayAlert("Mislukt!", "Uw nieuwe wachtwoorden komen niet overeen.", "Ok");
                     }
                 }
                 else
                 {
-                    await DisplayAlert("Oeps..", "Uw nieuwe wachtwoorden komen niet overeen", "Ok");
+                    await DisplayAlert("Mislukt!", "Niet alle velden zijn ingevuld.", "Ok");
                 }
             };
             Button terugknop = new Button { Text = "Terug", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White};

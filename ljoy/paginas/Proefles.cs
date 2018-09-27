@@ -114,7 +114,7 @@ namespace ljoy.paginas
             {
                 if (voornaam.Text == null || achternaam.Text == null || straatnaam.Text == null || huisnummer.Text == null || geboortedatum_dag.Text == null || geboortedatum_maand.Text == null || geboortedatum_jaar.Text == null || postcode.Text == null || woonplaats.Text == null || telefoonnummer.Text == null || emailadres.Text == null || "".Equals(voornaam.Text) || "".Equals(achternaam.Text) || "".Equals(straatnaam.Text) || "".Equals(huisnummer.Text) || "".Equals(geboortedatum_dag.Text) || "".Equals(geboortedatum_maand.Text) || "".Equals(geboortedatum_jaar.Text) || "".Equals(postcode.Text) || "".Equals(woonplaats.Text) || "".Equals(telefoonnummer.Text) || "".Equals(emailadres.Text))
                 {
-                    await DisplayAlert("Oeps!", "Vul a.u.b. alle velden in.", "Oké");
+                    await DisplayAlert("Mislukt!", "Niet alle velden zijn ingevuld.", "Ok");
                 }
                 else
                 {
@@ -148,7 +148,7 @@ namespace ljoy.paginas
                                          "Docent: " + les.docent);
                     });
                     await Navigation.RemovePopupPageAsync(scherm);
-                    await DisplayAlert("Gelukt!", "Je hebt je succesvol ingeschreven voor een proefles.", "Oké");
+                    await DisplayAlert("Gelukt!", "Je hebt je succesvol ingeschreven voor een proefles.", "Ok");
                 }
             };
 

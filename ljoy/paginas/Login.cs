@@ -81,7 +81,7 @@ namespace ljoy.paginas
                         {
 
                             await Navigation.RemovePopupPageAsync(scherm);
-                            await DisplayAlert("Oeps..", "Gebruikersnaam bestaat niet..", "Ok");
+                            await DisplayAlert("Mislukt!", "De gebruikersnaam die je hebt ingevuld bestaat niet.", "Ok");
                         }
                         else if ("1".Equals(result))
                         {
@@ -101,7 +101,7 @@ namespace ljoy.paginas
                         }
                         else if ("2".Equals(result))
                         {
-                            await DisplayAlert("Oeps..", "Wachtwoord is fout..", "Ok");
+                            await DisplayAlert("Mislukt!", "De gebruikersnaam en het wachtwoord komen niet overeen.", "Ok");
                             await Navigation.RemovePopupPageAsync(scherm);
                         }
                         else if ("3".Equals(result))
@@ -112,12 +112,12 @@ namespace ljoy.paginas
                     }
                     else
                     {
-                        await DisplayAlert("Oeps..", "Gebruikersnaam of wachtwoord is niet ingevuld.", "Ok");
+                        await DisplayAlert("Mislukt!", "Gebruikersnaam of wachtwoord is niet ingevuld.", "Ok");
                     }
                 }
                 catch(Exception ex)
                 {
-                    await DisplayAlert("Oeps..", ex.ToString(), "Ok");
+                    await DisplayAlert("Mislukt!", "Er is iets mis gegaan, probeer het nog eens.", "Ok");
 
                 }
 

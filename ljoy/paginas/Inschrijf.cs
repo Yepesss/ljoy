@@ -28,7 +28,7 @@ namespace ljoy.paginas
         CheckBox nieuwsbrief;
         CheckBox fotofilmmateriaal;
         Button btn1;
-        Button algemenevoorwaarden_link = new Button { Text = "Klik hier voor de algemene voorwaarden", BackgroundColor = Color.Transparent, TextColor = Color.Blue, FontAttributes = FontAttributes.Italic, HorizontalOptions = LayoutOptions.Center, FontSize = 12 };
+        Button algemenevoorwaarden_link = new Button { Text = "Klik hier voor de algemene voorwaarden.", BackgroundColor = Color.Transparent, TextColor = Color.Blue, FontAttributes = FontAttributes.Italic, HorizontalOptions = LayoutOptions.Center, FontSize = 12 };
         string result;
 
         public Inschrijf(entiteiten.Les les)
@@ -162,11 +162,11 @@ namespace ljoy.paginas
             {
                 if (voornaam.Text == null || achternaam.Text == null || straatnaam.Text == null || huisnummer.Text == null || geboortedatum_dag.Text == null || geboortedatum_maand.Text == null || geboortedatum_jaar.Text == null || postcode.Text == null || woonplaats.Text == null || telefoonnummer.Text == null || emailadres.Text == null || rekeningnummer.Text == null || rekeninghouder.Text == null || "".Equals(voornaam.Text) || "".Equals(achternaam.Text) || "".Equals(straatnaam.Text) || "".Equals(huisnummer.Text) || "".Equals(geboortedatum_dag.Text) || "".Equals(geboortedatum_maand.Text) || "".Equals(geboortedatum_jaar.Text) || "".Equals(postcode.Text) || "".Equals(woonplaats.Text) || "".Equals(telefoonnummer.Text) || "".Equals(emailadres.Text) || "".Equals(rekeningnummer.Text) || "".Equals(rekeninghouder.Text))
                 {
-                    await DisplayAlert("Oeps!", "Vul a.u.b. alle velden in.", "Oké");
+                    await DisplayAlert("Mislukt!", "Niet alle velden zijn ingevuld.", "Ok");
                 }
                 else if (!algemenevoorwaarden_checkbox.IsChecked)
                 {
-                    await DisplayAlert("Oeps!", "Om in te schrijven moet u akkoord gaan met de algemene voorwaarden.", "Oké");
+                    await DisplayAlert("Mislukt!", "Om in te schrijven moet u akkoord gaan met de algemene voorwaarden.", "Ok");
                 }
                 else
                 {
@@ -209,12 +209,12 @@ namespace ljoy.paginas
                                                  "Docent: " + les.docent);
                         });
                         await Navigation.RemovePopupPageAsync(scherm);
-                        await DisplayAlert("Gelukt!", "Je hebt je succesvol ingeschreven.", "Oké");
+                        await DisplayAlert("Gelukt!", "Je hebt je succesvol ingeschreven.", "Ok");
                     }
                     else
                     {
                         await Navigation.RemovePopupPageAsync(scherm);
-                        await DisplayAlert("Oeps!", "Er is iets fout gegaan, probeer het opnieuw.", "Oké");
+                        await DisplayAlert("Mislukt!", "Er is iets fout gegaan, probeer het nog eens.", "Ok");
                     }
 
 

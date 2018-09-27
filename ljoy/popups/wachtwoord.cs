@@ -25,13 +25,12 @@ namespace ljoy.popups
                 var response = await restService.WachtwoordVeranderen(gebruikersnaam_of_email.Text, nieuwWachtwoord);
                 if (response.Equals("1"))
                 {
-                    await DisplayAlert("Oeps..", "Gebruikersnaam of email bestaat niet..", "Ok");
+                    await DisplayAlert("Mislukt!", "De gebruikersnaam of het email-adres bestaat niet.", "Ok");
 
                 }
                 else if (response.Equals("2"))
                 {
-                    await DisplayAlert("Oeps..", "Er is iets fout gegaan, probeer het opnieuw.", "Ok");
-
+                    await DisplayAlert("Mislukt!", "Er is iets fout gegaan, probeer het nog eens.", "Ok");
                 }
                 else
                 {
@@ -44,6 +43,7 @@ namespace ljoy.popups
                                         "Met vriendelijke groet," + "\r\n" +
                                         "L-Joy Dancefactory", response, gebruikersnaam_of_email.Text);
                 }
+                await DisplayAlert("Gelukt!", "Er is een nieuw wachtwoord naar je email-adres gestuurd.", "Ok");
                 await PopupNavigation.Instance.PopAsync();
             };
             Button terugknop = new Button { Text = "Terug", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White};
