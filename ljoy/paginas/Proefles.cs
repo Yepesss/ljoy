@@ -1,6 +1,6 @@
 ﻿using Rg.Plugins.Popup.Extensions;
 using System;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using XLabs.Forms.Controls;
 
@@ -110,25 +110,29 @@ namespace ljoy.paginas
             geboortedatum.FontSize = 17.5;
 
             btn1 = new Button { Text = "Meld je aan", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
-            btn1.Clicked += (object sender, EventArgs e) =>
+            btn1.Clicked += async (object sender, EventArgs e) =>
             {
-                if (voornaam.Text == null || achternaam.Text == null || straatnaam.Text == null || huisnummer.Text == null || geboortedatum_dag.Text == null || geboortedatum_maand.Text == null || geboortedatum_jaar.Text == null || postcode.Text == null || woonplaats.Text == null || telefoonnummer.Text == null ||emailadres.Text == null || "".Equals(voornaam.Text) || "".Equals(achternaam.Text) || "".Equals(straatnaam.Text) || "".Equals(huisnummer.Text) || "".Equals(geboortedatum_dag.Text) || "".Equals(geboortedatum_maand.Text) || "".Equals(geboortedatum_jaar.Text) || "".Equals(postcode.Text) || "".Equals(woonplaats.Text) || "".Equals(telefoonnummer.Text) || "".Equals(emailadres.Text))
+                if (voornaam.Text == null || achternaam.Text == null || straatnaam.Text == null || huisnummer.Text == null || geboortedatum_dag.Text == null || geboortedatum_maand.Text == null || geboortedatum_jaar.Text == null || postcode.Text == null || woonplaats.Text == null || telefoonnummer.Text == null || emailadres.Text == null || "".Equals(voornaam.Text) || "".Equals(achternaam.Text) || "".Equals(straatnaam.Text) || "".Equals(huisnummer.Text) || "".Equals(geboortedatum_dag.Text) || "".Equals(geboortedatum_maand.Text) || "".Equals(geboortedatum_jaar.Text) || "".Equals(postcode.Text) || "".Equals(woonplaats.Text) || "".Equals(telefoonnummer.Text) || "".Equals(emailadres.Text))
                 {
-                    DisplayAlert("Oeps!", "Vul a.u.b. alle velden in.", "Oké");
+                    await DisplayAlert("Oeps!", "Vul a.u.b. alle velden in.", "Oké");
                 }
                 else
                 {
-                    email.SendMail email = new email.SendMail();
-                    //Email naar de gebruiker
-                    email.EmailVerzenden("U heeft zich aangemeld voor een proefles!",
+                    popups.laadscherm scherm = new popups.laadscherm();
+                    await Navigation.PushPopupAsync(scherm);
+                    await Task.Run(() =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                    {
+                        email.SendMail email = new email.SendMail();
+                        //Email naar de gebruiker
+                        email.EmailVerzenden("U heeft zich aangemeld voor een proefles!",
                                          "U heeft zich succesvol aangemeld voor een proefles " + les.naam + " op " + les.dag + "." + "\r\n" +
                                          "Wij verwachten u om " + les.tijdstip + " in de les." + "\r\n" + "\r\n" +
                                          "Met vriendelijke groet," + "\r\n" +
                                          "L-Joy Dancefactory",
                                          emailadres.Text, voornaam.Text);
 
-                    //Email naar l-joy
-                    email.EmailVerzenden("Aanmelding proefles",
+                        //Email naar l-joy
+                        email.EmailVerzenden("Aanmelding proefles",
                                          "Voornaam: " + voornaam.Text + "\r\n" +
                                          "Achternaam: " + achternaam.Text + "\r\n" +
                                          "Straatnaam: " + straatnaam.Text + "\r\n" +
@@ -142,6 +146,9 @@ namespace ljoy.paginas
                                          "Dag: " + les.dag + "\r\n" +
                                          "Tijdstip: " + les.tijdstip + "\r\n" +
                                          "Docent: " + les.docent);
+                    });
+                    await Navigation.RemovePopupPageAsync(scherm);
+                    await DisplayAlert("Gelukt!", "Je hebt je succesvol ingeschreven voor een proefles.", "Oké");
                 }
             };
 

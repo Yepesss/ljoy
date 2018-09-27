@@ -1,6 +1,6 @@
 ﻿using Rg.Plugins.Popup.Extensions;
 using System;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using XLabs.Forms.Controls;
 
@@ -29,7 +29,7 @@ namespace ljoy.paginas
         CheckBox fotofilmmateriaal;
         Button btn1;
         Button algemenevoorwaarden_link = new Button { Text = "Klik hier voor de algemene voorwaarden", BackgroundColor = Color.Transparent, TextColor = Color.Blue, FontAttributes = FontAttributes.Italic, HorizontalOptions = LayoutOptions.Center, FontSize = 12 };
-
+        string result;
 
         public Inschrijf(entiteiten.Les les)
         {
@@ -141,61 +141,83 @@ namespace ljoy.paginas
             algemenevoorwaarden_checkbox.CheckedBackgroundImageSource = "checkbox_background";
             algemenevoorwaarden_checkbox.CheckmarkImageSource = "checkbox_check";
             algemenevoorwaarden_checkbox.BorderImageSource = "checkbox_border";
-            algemenevoorwaarden_checkbox.Title = "Hiermee verklaar ik akkoord te gaan met de Algemene Voorwaarden van L-Joy dancefactory. *";
+            algemenevoorwaarden_checkbox.Title = "Hiermee verklaar ik akkoord te gaan met de Algemene Voorwaarden van L-Joy dancefactory.*";
 
             controls.CheckBox nieuwsbrief_checkbox = new controls.CheckBox();
             nieuwsbrief_checkbox.IsChecked = false;
             nieuwsbrief_checkbox.CheckedBackgroundImageSource = "checkbox_background";
             nieuwsbrief_checkbox.CheckmarkImageSource = "checkbox_check";
             nieuwsbrief_checkbox.BorderImageSource = "checkbox_border";
-            nieuwsbrief_checkbox.Title = "Ik wil de nieuwsbrief en info per email ontvangen.                                               ";
+            nieuwsbrief_checkbox.Title = "Ik wil de nieuwsbrief en info per email ontvangen.";
 
             controls.CheckBox fotofilmmateriaal_checkbox = new controls.CheckBox();
             fotofilmmateriaal_checkbox.IsChecked = false;
             fotofilmmateriaal_checkbox.CheckedBackgroundImageSource = "checkbox_background";
             fotofilmmateriaal_checkbox.CheckmarkImageSource = "checkbox_check";
             fotofilmmateriaal_checkbox.BorderImageSource = "checkbox_border";
-            fotofilmmateriaal_checkbox.Title = "Ik geef toestemming voor het maken van foto en filmmateriaal.                              ";
+            fotofilmmateriaal_checkbox.Title = "Ik geef toestemming voor het maken van foto en filmmateriaal.";
 
             btn1 = new Button { Text = "Schrijf je in", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
-            btn1.Clicked += (object sender, EventArgs e) =>
+            btn1.Clicked += async (object sender, EventArgs e) =>
             {
-                if (voornaam.Text == null || achternaam.Text == null || straatnaam.Text == null || huisnummer.Text == null || geboortedatum_dag.Text == null || geboortedatum_maand.Text == null || geboortedatum_jaar.Text == null || postcode.Text == null || woonplaats.Text == null || telefoonnummer.Text == null ||emailadres.Text == null || rekeningnummer.Text == null || rekeninghouder.Text == null || "".Equals(voornaam.Text) || "".Equals(achternaam.Text) || "".Equals(straatnaam.Text) || "".Equals(huisnummer.Text) || "".Equals(geboortedatum_dag.Text) || "".Equals(geboortedatum_maand.Text) || "".Equals(geboortedatum_jaar.Text) || "".Equals(postcode.Text) || "".Equals(woonplaats.Text) || "".Equals(telefoonnummer.Text) || "".Equals(emailadres.Text) || "".Equals(rekeningnummer.Text) || "".Equals(rekeninghouder.Text))
+                if (voornaam.Text == null || achternaam.Text == null || straatnaam.Text == null || huisnummer.Text == null || geboortedatum_dag.Text == null || geboortedatum_maand.Text == null || geboortedatum_jaar.Text == null || postcode.Text == null || woonplaats.Text == null || telefoonnummer.Text == null || emailadres.Text == null || rekeningnummer.Text == null || rekeninghouder.Text == null || "".Equals(voornaam.Text) || "".Equals(achternaam.Text) || "".Equals(straatnaam.Text) || "".Equals(huisnummer.Text) || "".Equals(geboortedatum_dag.Text) || "".Equals(geboortedatum_maand.Text) || "".Equals(geboortedatum_jaar.Text) || "".Equals(postcode.Text) || "".Equals(woonplaats.Text) || "".Equals(telefoonnummer.Text) || "".Equals(emailadres.Text) || "".Equals(rekeningnummer.Text) || "".Equals(rekeninghouder.Text))
                 {
-                    DisplayAlert("Oeps!", "Vul a.u.b. alle velden in.", "Oké");
+                    await DisplayAlert("Oeps!", "Vul a.u.b. alle velden in.", "Oké");
                 }
                 else if (!algemenevoorwaarden_checkbox.IsChecked)
                 {
-                    DisplayAlert("Oeps!", "Om in te schrijven moet u akkoord gaan met de algemene voorwaarden.", "Oké");
+                    await DisplayAlert("Oeps!", "Om in te schrijven moet u akkoord gaan met de algemene voorwaarden.", "Oké");
                 }
                 else
                 {
-                    email.SendMail email = new email.SendMail();
-                    //Email naar de gebruiker
-                    email.EmailVerzenden("U heeft zich ingeschreven!", 
-                                         "U heeft zich succesvol ingeschreven voor " + les.naam + " op " + les.dag + "." + "\r\n" +
-                                         "Wij verwachten u om " + les.tijdstip + " in de les." + "\r\n" + "\r\n" +
-                                         "Met vriendelijke groet," + "\r\n" +
-                                         "L-Joy Dancefactory", 
-                                         emailadres.Text, voornaam.Text);
+                    popups.laadscherm scherm = new popups.laadscherm();
+                    await Navigation.PushPopupAsync(scherm);
+                    await Task.Run(async () =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                    {
+                        RestService con = new RestService();
+                        result = await con.lesToevoegen(helper.Settings.IdSettings, les.lesid);
+                    });
+                    if ("0".Equals(result))
+                    {
+                        await Task.Run(() =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                        {
+                            email.SendMail email = new email.SendMail();
+                            //Email naar de gebruiker
+                            email.EmailVerzenden("U heeft zich ingeschreven!",
+                                                 "U heeft zich succesvol ingeschreven voor " + les.naam + " op " + les.dag + "." + "\r\n" +
+                                                 "Wij verwachten u om " + les.tijdstip + " in de les." + "\r\n" + "\r\n" +
+                                                 "Met vriendelijke groet," + "\r\n" +
+                                                 "L-Joy Dancefactory",
+                                                 emailadres.Text, voornaam.Text);
 
-                    //Email naar l-joy
-                    email.EmailVerzenden("Inschrijving", 
-                                         "Voornaam: " + voornaam.Text + "\r\n" +
-                                         "Achternaam: " + achternaam.Text + "\r\n" +
-                                         "Straatnaam: " + straatnaam.Text + "\r\n" +
-                                         "Huisnummer: " + huisnummer.Text + "\r\n" +
-                                         "Geboortedatum: " + geboortedatum_dag.Text + " - " + geboortedatum_maand.Text + " - " + geboortedatum_jaar + "\r\n" +
-                                         "Postcode: " + postcode.Text + "\r\n" +
-                                         "Woonplaats: " + woonplaats.Text + "\r\n" +
-                                         "Telefoonnummer: " + telefoonnummer.Text + "\r\n" +
-                                         "Email: " + emailadres.Text + "\r\n" +
-                                         "Rekeningnummer: " + rekeningnummer.Text + "\r\n" +
-                                         "Rekeninghouder: " + rekeninghouder.Text + "\r\n" +
-                                         "Les: " + les.naam + "\r\n" +
-                                         "Dag: " + les.dag + "\r\n" +
-                                         "Tijdstip: " + les.tijdstip + "\r\n" +
-                                         "Docent: " + les.docent);
+                            //Email naar l-joy
+                            email.EmailVerzenden("Inschrijving",
+                                                 "Voornaam: " + voornaam.Text + "\r\n" +
+                                                 "Achternaam: " + achternaam.Text + "\r\n" +
+                                                 "Straatnaam: " + straatnaam.Text + "\r\n" +
+                                                 "Huisnummer: " + huisnummer.Text + "\r\n" +
+                                                 "Geboortedatum: " + geboortedatum_dag.Text + " - " + geboortedatum_maand.Text + " - " + geboortedatum_jaar + "\r\n" +
+                                                 "Postcode: " + postcode.Text + "\r\n" +
+                                                 "Woonplaats: " + woonplaats.Text + "\r\n" +
+                                                 "Telefoonnummer: " + telefoonnummer.Text + "\r\n" +
+                                                 "Email: " + emailadres.Text + "\r\n" +
+                                                 "Rekeningnummer: " + rekeningnummer.Text + "\r\n" +
+                                                 "Rekeninghouder: " + rekeninghouder.Text + "\r\n" +
+                                                 "Les: " + les.naam + "\r\n" +
+                                                 "Dag: " + les.dag + "\r\n" +
+                                                 "Tijdstip: " + les.tijdstip + "\r\n" +
+                                                 "Docent: " + les.docent);
+                        });
+                        await Navigation.RemovePopupPageAsync(scherm);
+                        await DisplayAlert("Gelukt!", "Je hebt je succesvol ingeschreven.", "Oké");
+                    }
+                    else
+                    {
+                        await Navigation.RemovePopupPageAsync(scherm);
+                        await DisplayAlert("Oeps!", "Er is iets fout gegaan, probeer het opnieuw.", "Oké");
+                    }
+
+
                 }
             };
 

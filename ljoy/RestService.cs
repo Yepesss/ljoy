@@ -106,6 +106,17 @@ namespace ljoy
 
         }
 
+        public async Task<string> lesToevoegen(string id, int lesid)
+        {
+            var uri = new Uri("http://ljoy.dx.am/lestoevoegen.php");
+            var json = "{\"id\":\"" + id + "\",\"lesid\":\"" + lesid + "\"}";
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync(uri, content).ConfigureAwait(false);
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        }
+
         public async Task<string> WachtwoordVeranderen(string gebruikersnaam_of_email, string wachtwoord)
         {
             var uri = new Uri("http://ljoy.dx.am/wachtwoordveranderen.php");
