@@ -10,6 +10,8 @@ namespace ljoy.paginas
     {
         public MijnAccount()
         {
+            this.Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
+
             List<LesAccountPagina> ingeschrevenlessen = new List<LesAccountPagina>();
             RestService con = new RestService();
             ingeschrevenlessen = con.VerkrijgLessenAccountPagina().Result;
@@ -52,16 +54,37 @@ namespace ljoy.paginas
             uitlog_knop.TextColor = Color.White;
             uitlog_knop.BackgroundColor = Color.FromHex("#FF4081");
             uitlog_knop.VerticalOptions = LayoutOptions.Center;
-            uitlog_knop.Clicked += async (object sender, EventArgs e) =>
+            uitlog_knop.Clicked += (object sender, EventArgs e) =>
             {
                 helper.Settings.RemoveUserName();
-                await UitloggenAsync();
+                helper.Settings.RemoveId();
+                Uitloggen();
             };
 
-            Content = new StackLayout
+            if (ingeschrevenlessen.Count == 0)
             {
-                Margin = new Thickness(10, 10, 10, 10),
-                Children = {
+                Content = new StackLayout
+                {
+                    Margin = new Thickness(10, 10, 10, 10),
+                    Children = {
+                    new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), VerticalOptions = LayoutOptions.Start, Content = new StackLayout{
+                            Children = {
+                                new Label { Text = "Je bent nergens voor ingeschreven", HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 15, FontAttributes = FontAttributes.Bold },
+                                grid
+                            }
+                        }, HasShadow = true,
+                    },
+                    veranderwachtwoord_knop,
+                    uitlog_knop
+                }
+                };
+            }
+            else
+            {
+                Content = new StackLayout
+                {
+                    Margin = new Thickness(10, 10, 10, 10),
+                    Children = {
                     new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), VerticalOptions = LayoutOptions.Start, Content = new StackLayout{
                             Children = {
                                 new Label { Text = "Je bent ingeschreven voor de volgende lessen", HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 15, FontAttributes = FontAttributes.Bold },
@@ -73,11 +96,12 @@ namespace ljoy.paginas
                     veranderwachtwoord_knop,
                     uitlog_knop
                 }
-            };
+                };
+            }
         }
 
-        private async System.Threading.Tasks.Task UitloggenAsync(){
-            await Navigation.PushModalAsync(new NavigationPage(new Login()));
+        private void Uitloggen(){
+            Application.Current.MainPage = new NavigationPage(new Login());
         }
     }
 }

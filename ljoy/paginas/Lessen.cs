@@ -18,7 +18,8 @@ namespace ljoy.paginas
 
         public Lessen()
         {
-            //LISTVIEW DATA
+
+            this.Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
 
             RestService con = new RestService();
             List<Les> result = new List<Les>();

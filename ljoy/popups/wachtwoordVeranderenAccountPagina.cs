@@ -12,9 +12,9 @@ namespace ljoy.popups
 	{
         public wachtwoordVeranderenAccountPagina ()
 		{
-            Entry wachtwoordOud = new Entry { Placeholder = "Oud wachtwoord" };
-            Entry wachtwoordNieuw = new Entry { Placeholder = "Nieuw wachtwoord" };
-            Entry wachtwoordOpnieuw = new Entry { Placeholder = "Nieuw wachtwoord (opnieuw)" };
+            Entry wachtwoordOud = new Entry { Placeholder = "Oud wachtwoord", IsPassword = true };
+            Entry wachtwoordNieuw = new Entry { Placeholder = "Nieuw wachtwoord", IsPassword = true };
+            Entry wachtwoordOpnieuw = new Entry { Placeholder = "Nieuw wachtwoord (opnieuw)", IsPassword = true };
 
             Button verzendknop = new Button { Text = "Wachtwoord veranderen", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
             verzendknop.Clicked += async (object sender, EventArgs e) =>

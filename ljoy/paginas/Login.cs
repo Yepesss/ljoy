@@ -85,17 +85,17 @@ namespace ljoy.paginas
                         }
                         else if ("1".Equals(result))
                         {
-                            if ("admin".Equals(gebruikersnaam.Text.ToLower()))
+                            if ("lidian".Equals(gebruikersnaam.Text.ToLower()))
                             {
                                 await Navigation.PushModalAsync(new NavigationPage(new applicatie.AdminStarter()));
                                 await Navigation.RemovePopupPageAsync(scherm);
                             }
                             else
                             {
-                                helper.Settings.UsernameSettings = gebruikersnaam.Text;
-                                await Navigation.PushAsync(new applicatie.ApplicatieStarter());
                                 RestService con = new RestService();
                                 helper.Settings.IdSettings = await con.VerkrijgId(gebruikersnaam.Text);
+                                helper.Settings.UsernameSettings = gebruikersnaam.Text;
+                                Application.Current.MainPage = new applicatie.ApplicatieStarter();
                                 await Navigation.RemovePopupPageAsync(scherm);
                             }
                         }

@@ -30,10 +30,6 @@
 	<string>ljoy</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>UIStatusBarHidden</key>
-	<true/>
-	<key>UIRequiresFullScreen</key>
-	<true/>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
