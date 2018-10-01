@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -11,7 +13,8 @@ namespace ljoy.popups
 	public class wachtwoord : PopupPage
 	{
         private static Random random = new Random();
-
+        string response;
+        string nieuwWachtwoord;
 
         public wachtwoord ()
 		{
@@ -20,31 +23,44 @@ namespace ljoy.popups
             Button verzendknop = new Button { Text = "Wachtwoord opvragen", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
             verzendknop.Clicked += async (object sender, EventArgs e) =>
             {
-                RestService restService = new RestService();
-                string nieuwWachtwoord = genereerWachtwoord();
-                var response = await restService.WachtwoordVeranderen(gebruikersnaam_of_email.Text, nieuwWachtwoord);
-                if (response.Equals("1"))
+                try
                 {
-                    await DisplayAlert("Mislukt!", "De gebruikersnaam of het email-adres bestaat niet.", "Ok");
+                    popups.laadscherm scherm = new popups.laadscherm();
+                    await Navigation.PushPopupAsync(scherm);
+                    await Task.Run(async () =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
+                    {
+                        RestService restService = new RestService();
+                        nieuwWachtwoord = genereerWachtwoord();
+                        response = await restService.WachtwoordVeranderen(gebruikersnaam_of_email.Text, nieuwWachtwoord);
+                    });
+                    if (response.Equals("1"))
+                    {
+                        await DisplayAlert("Mislukt!", "De gebruikersnaam of het email-adres bestaat niet.", "Ok");
 
+                    }
+                    else if (response.Equals("2"))
+                    {
+                        await DisplayAlert("Mislukt!", "Er is iets fout gegaan, probeer het nog eens.", "Ok");
+                    }
+                    else
+                    {
+                        email.SendMail mail = new email.SendMail();
+                        mail.EmailVerzenden("Nieuw wachtwoord",
+                                            "Wij hebben uw wachtwoord gewijzigd." + "\r\n" + "\r\n" +
+                                            "Je nieuwe wachtwoord is: " + nieuwWachtwoord + "\r\n" + "\r\n" +
+                                            "Heb jij dit nieuwe wachtwoord niet aangevraagd, neem dan contact op met L-Joy Dancefactory. Het telefoonnummer kun je vinden op de site: www.l-joy.nl" + "\r\n" +
+                                            "Wanneer je met je nieuwe wachtwoord inlogd, wordt je gevraagd het wachtwoord meteen te veranderen." + "\r\n" + "\r\n" +
+                                            "Met vriendelijke groet," + "\r\n" +
+                                            "L-Joy Dancefactory", response, gebruikersnaam_of_email.Text);
+                        await DisplayAlert("Gelukt!", "Er is een nieuw wachtwoord naar " + response + " gestuurd.", "Ok");
+                    }
+                    await Navigation.RemovePopupPageAsync(scherm);
+                    await PopupNavigation.Instance.PopAsync();
                 }
-                else if (response.Equals("2"))
+                catch (Exception ex)
                 {
-                    await DisplayAlert("Mislukt!", "Er is iets fout gegaan, probeer het nog eens.", "Ok");
+                    await DisplayAlert("Gelukt!", ex.ToString(), "Ok");
                 }
-                else
-                {
-                    email.SendMail mail = new email.SendMail();
-                    mail.EmailVerzenden("Nieuw wachtwoord", 
-                                        "Wij hebben uw wachtwoord gewijzigd op aanvraag van u." + "\r\n" + "\r\n" + 
-                                        "Uw nieuwe wachtwoord is: " + nieuwWachtwoord + "\r\n" + "\r\n" +
-                                        "Heeft u dit niet aangevraagd, neem dan contact op met L-Joy Dancefactory. Het telefoonnummer kunt u vinden op de site: www.l-joy.nl" + "\r\n" +
-                                        "Wanneer u met uw nieuwe wachtwoord inlogd, wordt u gevraagd het wachtwoord meteen te veranderen." + "\r\n" + "\r\n" +
-                                        "Met vriendelijke groet," + "\r\n" +
-                                        "L-Joy Dancefactory", response, gebruikersnaam_of_email.Text);
-                }
-                await DisplayAlert("Gelukt!", "Er is een nieuw wachtwoord naar je email-adres gestuurd.", "Ok");
-                await PopupNavigation.Instance.PopAsync();
             };
             Button terugknop = new Button { Text = "Terug", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White};
             terugknop.Clicked += (object sender, EventArgs e) =>

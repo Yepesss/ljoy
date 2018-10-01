@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="nl.ljoy.ljoy" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.5" package="nl.ljoy.ljoy" android:installLocation="internalOnly" android:versionCode="5">
 	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
@@ -7,21 +7,17 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="L-Joy">
-    <receiver android:name="localnotifications.plugin.ScheduledAlarmHandler" android:enabled="true"></receiver>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<application android:label="ljoy">
+		<receiver android:name="localnotifications.plugin.ScheduledAlarmHandler" android:enabled="true"></receiver>
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyAQPd8zrG_ivq3UeM4YExVL4oHWPWAkkfU" />
-    <receiver 
-        android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" 
-        android:exported="false" />
-    <receiver 
-        android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" 
-        android:exported="true" 
-        android:permission="com.google.android.c2dm.permission.SEND">
-        <intent-filter>
-            <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-            <category android:name="${applicationId}" />
-        </intent-filter>
-    </receiver>
+		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
+		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+				<category android:name="${applicationId}" />
+			</intent-filter>
+		</receiver>
 	</application>
 </manifest>

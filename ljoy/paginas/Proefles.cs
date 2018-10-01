@@ -94,6 +94,7 @@ namespace ljoy.paginas
             telefoonnummer.PlaceholderColor = Color.Gray;
             telefoonnummer.TextColor = Color.Black;
             telefoonnummer.Placeholder = "Telefoonnummer (optioneel)";
+            telefoonnummer.Keyboard = Keyboard.Numeric;
 
             emailadres = new Entry();
             emailadres.HorizontalTextAlignment = TextAlignment.Start;
@@ -109,7 +110,7 @@ namespace ljoy.paginas
             geboortedatum.TextColor = Color.Gray;
             geboortedatum.FontSize = 17.5;
 
-            btn1 = new Button { Text = "Meld je aan", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
+            btn1 = new Button { Margin = new Thickness(0,0,0,7.5), Text = "Meld je aan", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
             btn1.Clicked += async (object sender, EventArgs e) =>
             {
                 if (voornaam.Text == null || achternaam.Text == null || straatnaam.Text == null || huisnummer.Text == null || geboortedatum_dag.Text == null || geboortedatum_maand.Text == null || geboortedatum_jaar.Text == null || postcode.Text == null || woonplaats.Text == null || telefoonnummer.Text == null || emailadres.Text == null || "".Equals(voornaam.Text) || "".Equals(achternaam.Text) || "".Equals(straatnaam.Text) || "".Equals(huisnummer.Text) || "".Equals(geboortedatum_dag.Text) || "".Equals(geboortedatum_maand.Text) || "".Equals(geboortedatum_jaar.Text) || "".Equals(postcode.Text) || "".Equals(woonplaats.Text) || "".Equals(telefoonnummer.Text) || "".Equals(emailadres.Text))

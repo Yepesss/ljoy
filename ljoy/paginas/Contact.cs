@@ -223,14 +223,20 @@ namespace ljoy.paginas
             Grid.SetColumnSpan(info, 3);
 
 
-            Content = new ScrollView
+            Content = new StackLayout
             {
-                Content = new StackLayout
+                Children =
                 {
-                    Children = {
-                        map,
-                        //routeButton,
-                        grid
+                    map,
+                    new ScrollView
+                    {
+                        Content = new StackLayout
+                        {
+                            Children = {
+                                //routeButton,
+                                grid
+                            }
+                        }
                     }
                 }
             };

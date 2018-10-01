@@ -21,7 +21,6 @@ namespace ljoy.paginas
                                 new Label { Text = nieuws.tekst, TextColor = Color.White, FontSize = 14 },
                                 new BoxView() { Color = Color.White, HeightRequest = 1  },
                                 new Label { Text = nieuws.datum, TextColor = Color.White, FontSize = 14, FontAttributes = FontAttributes.Italic, HorizontalTextAlignment = TextAlignment.End},
-
                             }
                         }, HasShadow = true,
                     },

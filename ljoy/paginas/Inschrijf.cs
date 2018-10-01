@@ -101,6 +101,7 @@ namespace ljoy.paginas
             telefoonnummer.PlaceholderColor = Color.Gray;
             telefoonnummer.TextColor = Color.Black;
             telefoonnummer.Placeholder = "Telefoonnummer (optioneel)";
+            telefoonnummer.Keyboard = Keyboard.Numeric;
 
             emailadres = new Entry();
             emailadres.HorizontalTextAlignment = TextAlignment.Start;
@@ -157,7 +158,7 @@ namespace ljoy.paginas
             fotofilmmateriaal_checkbox.BorderImageSource = "checkbox_border";
             fotofilmmateriaal_checkbox.Title = "Ik geef toestemming voor het maken van foto en filmmateriaal.";
 
-            btn1 = new Button { Text = "Schrijf je in", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
+            btn1 = new Button { Margin = new Thickness(0, 0, 0, 7.5), Text = "Schrijf je in", HorizontalOptions = LayoutOptions.FillAndExpand, FontAttributes = FontAttributes.Bold, FontSize = 14, BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
             btn1.Clicked += async (object sender, EventArgs e) =>
             {
                 if (voornaam.Text == null || achternaam.Text == null || straatnaam.Text == null || huisnummer.Text == null || geboortedatum_dag.Text == null || geboortedatum_maand.Text == null || geboortedatum_jaar.Text == null || postcode.Text == null || woonplaats.Text == null || telefoonnummer.Text == null || emailadres.Text == null || rekeningnummer.Text == null || rekeninghouder.Text == null || "".Equals(voornaam.Text) || "".Equals(achternaam.Text) || "".Equals(straatnaam.Text) || "".Equals(huisnummer.Text) || "".Equals(geboortedatum_dag.Text) || "".Equals(geboortedatum_maand.Text) || "".Equals(geboortedatum_jaar.Text) || "".Equals(postcode.Text) || "".Equals(woonplaats.Text) || "".Equals(telefoonnummer.Text) || "".Equals(emailadres.Text) || "".Equals(rekeningnummer.Text) || "".Equals(rekeninghouder.Text))
@@ -196,7 +197,7 @@ namespace ljoy.paginas
                                                  "Achternaam: " + achternaam.Text + "\r\n" +
                                                  "Straatnaam: " + straatnaam.Text + "\r\n" +
                                                  "Huisnummer: " + huisnummer.Text + "\r\n" +
-                                                 "Geboortedatum: " + geboortedatum_dag.Text + " - " + geboortedatum_maand.Text + " - " + geboortedatum_jaar + "\r\n" +
+                                                 "Geboortedatum: " + geboortedatum_dag.Text + " - " + geboortedatum_maand.Text + " - " + geboortedatum_jaar.Text + "\r\n" +
                                                  "Postcode: " + postcode.Text + "\r\n" +
                                                  "Woonplaats: " + woonplaats.Text + "\r\n" +
                                                  "Telefoonnummer: " + telefoonnummer.Text + "\r\n" +
@@ -204,9 +205,12 @@ namespace ljoy.paginas
                                                  "Rekeningnummer: " + rekeningnummer.Text + "\r\n" +
                                                  "Rekeninghouder: " + rekeninghouder.Text + "\r\n" +
                                                  "Les: " + les.naam + "\r\n" +
+                                                 "Docent: " + les.docent + "\r\n" +
                                                  "Dag: " + les.dag + "\r\n" +
                                                  "Tijdstip: " + les.tijdstip + "\r\n" +
-                                                 "Docent: " + les.docent);
+                                                 "Machtiging: " + machtiging_checkbox.IsChecked + "\r\n" +
+                                                 "Info en nieuwsbrief: " + nieuwsbrief_checkbox.IsChecked + "\r\n" +
+                                                 "Fotomateriaal: " + fotofilmmateriaal_checkbox.IsChecked);                                                
                         });
                         await Navigation.RemovePopupPageAsync(scherm);
                         await DisplayAlert("Gelukt!", "Je hebt je succesvol ingeschreven.", "Ok");

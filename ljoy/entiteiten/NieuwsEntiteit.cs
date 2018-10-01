@@ -7,6 +7,7 @@ namespace ljoy.entiteiten
     {
         public NieuwsEntiteit()
         {
+
         }
 
         [JsonProperty(PropertyName = "nieuwsid")]

@@ -43,4 +43,12 @@
       <item name="android:windowIsFloating">false</item>
       <item name="android:backgroundDimEnabled">false</item>
     </style>
+  
+    <style name="MyTabLayout" parent="Base.Widget.Design.TabLayout">
+    <item name="tabTextAppearance">@style/MyTabTextAppearance</item>
+  </style>
+
+  <style name="MyTabTextAppearance" parent="TextAppearance.AppCompat.Button">
+    <item name="android:textSize">12sp</item>
+  </style>
 </resources>

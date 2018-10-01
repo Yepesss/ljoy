@@ -85,9 +85,9 @@ namespace ljoy.paginas
                 Grid viewGrid = new Grid();
                 viewGrid.VerticalOptions = LayoutOptions.CenterAndExpand;
                 viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(10) });
-                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
-                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
-                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
+                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
                 viewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(10) });
 
 

@@ -32,7 +32,7 @@ namespace ljoy.popups
                                         "Reden: " + reden.Text);
                 });
                 await Navigation.RemovePopupPageAsync(scherm);
-                await DisplayAlert("Gelukt!", "Je hebt je afgemeld.", "Oké");
+                await DisplayAlert("Gelukt!", "Je hebt je succesvol afgemeld.", "Ok");
                 await PopupNavigation.Instance.PopAsync();
             };
             Button terugknop = new Button { Text = "Terug", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White};

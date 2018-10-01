@@ -36,7 +36,7 @@ namespace ljoy.applicatie
 
             //Maak de mijn account pagina aan
             var mijnAccountPagina = new paginas.MijnAccount();
-            mijnAccountPagina.Title = "Mijn account";
+            mijnAccountPagina.Title = "Account";
 
             if (Device.RuntimePlatform == Device.iOS)
             {

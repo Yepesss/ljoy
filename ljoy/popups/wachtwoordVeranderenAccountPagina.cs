@@ -12,16 +12,18 @@ namespace ljoy.popups
 {
 	public class wachtwoordVeranderenAccountPagina : PopupPage
 	{
+        string response;
+
         public wachtwoordVeranderenAccountPagina ()
 		{
-            Entry wachtwoordOud = new Entry { Placeholder = "Oud wachtwoord", IsPassword = true };
-            Entry wachtwoordNieuw = new Entry { Placeholder = "Nieuw wachtwoord", IsPassword = true };
-            Entry wachtwoordOpnieuw = new Entry { Placeholder = "Nieuw wachtwoord (opnieuw)", IsPassword = true };
+            Entry wachtwoordOud = new Entry { Text = "", Placeholder = "Oud wachtwoord", IsPassword = true };
+            Entry wachtwoordNieuw = new Entry { Text = "", Placeholder = "Nieuw wachtwoord", IsPassword = true };
+            Entry wachtwoordOpnieuw = new Entry { Text = "", Placeholder = "Nieuw wachtwoord (opnieuw)", IsPassword = true };
 
             Button verzendknop = new Button { Text = "Wachtwoord veranderen", BackgroundColor = Color.FromHex("#FF4081"), TextColor = Color.White };
             verzendknop.Clicked += async (object sender, EventArgs e) =>
             {
-                if (!"".Equals(wachtwoordOud.Text) || wachtwoordOud.Text == null || !"".Equals(wachtwoordNieuw.Text) || wachtwoordNieuw.Text == null || !"".Equals(wachtwoordOpnieuw.Text) || wachtwoordOpnieuw.Text == null)
+                if (!"".Equals(wachtwoordOud.Text) || !"".Equals(wachtwoordNieuw.Text) || !"".Equals(wachtwoordOpnieuw.Text))
                 {
                     if (wachtwoordNieuw.Text.Equals(wachtwoordOpnieuw.Text))
                     {
@@ -30,26 +32,26 @@ namespace ljoy.popups
                         await Task.Run(async () =>    // by putting this Task.Run only the Activity Indicator is shown otherwise its not shown.  So we have added this.
                         {
                             RestService restService = new RestService();
-                            var response = await restService.WachtwoordVeranderenAccountPagina(helper.Settings.UsernameSettings, wachtwoordNieuw.Text, wachtwoordOud.Text);
-                            if ("0".Equals(response))
-                            {
-                                await PopupNavigation.Instance.PopAsync();
-                            }
-                            else if ("1".Equals(response))
-                            {
-                                await DisplayAlert("Mislukt!", "Uw oude wachtwoord is niet juist.", "Ok");
-                            }
-                            else
-                            {
-                                await DisplayAlert("Mislukt!", "Er is iets fout gegaan, probeer het nog eens.", "Ok");
-                            }
+                            response = await restService.WachtwoordVeranderenAccountPagina(helper.Settings.UsernameSettings, wachtwoordNieuw.Text, wachtwoordOud.Text);
                         });
                         await Navigation.RemovePopupPageAsync(scherm);
-                        await DisplayAlert("Gelukt!", "Je wachtwoord is gewijzigd.", "Ok");
+                        if ("0".Equals(response))
+                        {
+                            await DisplayAlert("Gelukt!", "Je wachtwoord is gewijzigd.", "Ok");
+                            await PopupNavigation.Instance.PopAsync();
+                        }
+                        else if ("1".Equals(response))
+                        {
+                            await DisplayAlert("Mislukt!", "Het ingevulde oude wachtwoord is niet juist.", "Ok");
+                        }
+                        else
+                        {
+                            await DisplayAlert("Mislukt!", "Er is iets fout gegaan, probeer het nog eens.", "Ok");
+                        }
                     }
                     else
                     {
-                        await DisplayAlert("Mislukt!", "Uw nieuwe wachtwoorden komen niet overeen.", "Ok");
+                        await DisplayAlert("Mislukt!", "De ingevulde nieuwe wachtwoorden komen niet overeen.", "Ok");
                     }
                 }
                 else

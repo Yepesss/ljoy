@@ -38,6 +38,7 @@ namespace ljoy.paginas
 
 
             gebruikersnaam = new Entry();
+            gebruikersnaam.Text = "";
             gebruikersnaam.HorizontalTextAlignment = TextAlignment.Start;
             gebruikersnaam.HorizontalOptions = LayoutOptions.FillAndExpand;
             gebruikersnaam.VerticalOptions = LayoutOptions.Center;
@@ -45,6 +46,7 @@ namespace ljoy.paginas
 
 
             wachtwoord = new Entry();
+            wachtwoord.Text = "";
             wachtwoord.HorizontalTextAlignment = TextAlignment.Start;
             wachtwoord.IsPassword = true;
             wachtwoord.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -62,7 +64,7 @@ namespace ljoy.paginas
             {
                 try
                 {
-                    if (!gebruikersnaam.Text.Equals("") || !wachtwoord.Text.Equals(""))
+                    if (!gebruikersnaam.Text.Equals("") && !wachtwoord.Text.Equals(""))
                     {
                         popups.laadscherm scherm = new popups.laadscherm();
                         await Navigation.PushPopupAsync(scherm);
@@ -76,11 +78,10 @@ namespace ljoy.paginas
                         RestService con = new RestService();
                             result = con.Inloggen(gebruikersnaam.Text, wachtwoord.Text).Result;
                         });
+                        await Navigation.RemovePopupPageAsync(scherm);
 
                         if ("0".Equals(result))
                         {
-
-                            await Navigation.RemovePopupPageAsync(scherm);
                             await DisplayAlert("Mislukt!", "De gebruikersnaam die je hebt ingevuld bestaat niet.", "Ok");
                         }
                         else if ("1".Equals(result))
@@ -88,21 +89,18 @@ namespace ljoy.paginas
                             if ("lidian".Equals(gebruikersnaam.Text.ToLower()))
                             {
                                 await Navigation.PushModalAsync(new NavigationPage(new applicatie.AdminStarter()));
-                                await Navigation.RemovePopupPageAsync(scherm);
                             }
                             else
                             {
                                 RestService con = new RestService();
                                 helper.Settings.IdSettings = await con.VerkrijgId(gebruikersnaam.Text);
                                 helper.Settings.UsernameSettings = gebruikersnaam.Text;
-                                Application.Current.MainPage = new applicatie.ApplicatieStarter();
-                                await Navigation.RemovePopupPageAsync(scherm);
+                                Application.Current.MainPage = new NavigationPage(new applicatie.ApplicatieStarter());
                             }
                         }
                         else if ("2".Equals(result))
                         {
                             await DisplayAlert("Mislukt!", "De gebruikersnaam en het wachtwoord komen niet overeen.", "Ok");
-                            await Navigation.RemovePopupPageAsync(scherm);
                         }
                         else if ("3".Equals(result))
                         {
@@ -112,12 +110,23 @@ namespace ljoy.paginas
                     }
                     else
                     {
-                        await DisplayAlert("Mislukt!", "Gebruikersnaam of wachtwoord is niet ingevuld.", "Ok");
+                        if (!gebruikersnaam.Text.Equals("") && wachtwoord.Text.Equals(""))
+                        {
+                            await DisplayAlert("Mislukt!", "Wachtwoord is niet ingevuld.", "Ok");
+                        }
+                        else if(gebruikersnaam.Text.Equals("") && !wachtwoord.Text.Equals(""))
+                        {
+                            await DisplayAlert("Mislukt!", "Gebruikersnaam is niet ingevuld.", "Ok");
+                        }
+                        else
+                        {
+                            await DisplayAlert("Mislukt!", "Gebruikersnaam en wachtwoord zijn niet ingevuld.", "Ok");
+                        }
                     }
                 }
                 catch(Exception ex)
                 {
-                    await DisplayAlert("Mislukt!", "Er is iets mis gegaan, probeer het nog eens.", "Ok");
+                    await DisplayAlert("Mislukt!", ex.ToString(), "Ok");
 
                 }
 

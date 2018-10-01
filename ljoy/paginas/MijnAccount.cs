@@ -81,21 +81,25 @@ namespace ljoy.paginas
             }
             else
             {
-                Content = new StackLayout
+                Content = new ScrollView
                 {
-                    Margin = new Thickness(10, 10, 10, 10),
-                    Children = {
-                    new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), VerticalOptions = LayoutOptions.Start, Content = new StackLayout{
-                            Children = {
-                                new Label { Text = "Je bent ingeschreven voor de volgende lessen", HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 15, FontAttributes = FontAttributes.Bold },
-                                new BoxView() { Color = Color.White, HeightRequest = 1  },
-                                grid
-                            }
-                        }, HasShadow = true,
-                    },
-                    veranderwachtwoord_knop,
-                    uitlog_knop
-                }
+                    Content = new StackLayout
+                    {
+                        Margin = new Thickness(10, 10, 10, 10),
+                        Children = {
+                        new Frame { Padding = 7.5, CornerRadius = 5, BackgroundColor = Color.FromHex("#FF4081"), VerticalOptions = LayoutOptions.Start, Content = new StackLayout{
+                                Children = {
+                                    new Label { Text = "Je bent ingeschreven voor de volgende lessen", HorizontalTextAlignment = TextAlignment.Center, TextColor = Color.White, FontSize = 15, FontAttributes = FontAttributes.Bold },
+                                    new BoxView() { Color = Color.White, HeightRequest = 1  },
+                                    grid
+                                }
+                            }, HasShadow = true,
+                        },
+                        veranderwachtwoord_knop,
+                        uitlog_knop,
+                        new Label { Text = "V1.6 - Negnod", HorizontalOptions = LayoutOptions.Center, FontSize = 10, TextColor = Color.LightGray}
+                        }
+                    }
                 };
             }
         }

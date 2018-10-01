@@ -29,14 +29,14 @@ namespace ljoy.popups
                         helper.Settings.UsernameSettings = gebruikersnaam;
                         RestService restService = new RestService();
                         var response = await restService.WachtwoordVeranderenEnActiveren(gebruikersnaam, wachtwoordNieuw.Text);
-                        await PopupNavigation.Instance.PopAsync();
                         helper.Settings.UsernameSettings = gebruikersnaam;
                         RestService con = new RestService();
                         helper.Settings.IdSettings = await con.VerkrijgId(gebruikersnaam);
                     });
-                    await Navigation.PushAsync(new applicatie.ApplicatieStarter());
                     await Navigation.RemovePopupPageAsync(scherm);
                     await DisplayAlert("Gelukt!", "Je wachtwoord is gewijzigd.", "Oké");
+                    await PopupNavigation.Instance.PopAsync();
+                    Application.Current.MainPage = new NavigationPage(new applicatie.ApplicatieStarter());
                 }
                 else
                 {

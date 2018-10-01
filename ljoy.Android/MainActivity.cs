@@ -10,12 +10,11 @@ using Plugin.FirebasePushNotification;
 
 namespace ljoy.Droid
 {
-    [Activity(Label = "L-Joy", Icon = "@drawable/Icon180", Theme = "@style/splashscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "L-Joy", Icon = "@drawable/Icon180", Theme = "@style/splashscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
-            System.Threading.Thread.Sleep(2000);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.Window.RequestFeature(WindowFeatures.ActionBar);
@@ -24,6 +23,14 @@ namespace ljoy.Droid
             base.SetTheme(Resource.Style.MainTheme);
             base.OnCreate(bundle);
             Rg.Plugins.Popup.Popup.Init(this, bundle);
+            if (CheckSelfPermission("android.permission.INTERNET") == Permission.Granted)
+            {
+
+            }
+            else
+            {
+                RequestPermissions(new String[] { "android.permission.INTERNET" }, 0);
+            }
             if (CheckSelfPermission("android.permission.ACCESS_FINE_LOCATION") == Permission.Granted)
             {
 
@@ -34,9 +41,10 @@ namespace ljoy.Droid
             }
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
+            Firebase.FirebaseApp.InitializeApp(this);
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
             LoadApplication(new App());
-            FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
         }
 
